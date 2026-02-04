@@ -1,0 +1,146 @@
+---
+/**
+ * SEO Component
+ * Provides comprehensive meta tags for SEO, Open Graph, Twitter Cards, and JSON-LD structured data
+ */
+
+// Environment variables
+const COMPANY_NAME = import.meta.env.COMPANY_NAME || 'DARTRANS & HENZEL Sp. z o.o.';
+const SITE_NAME = import.meta.env.SITE_NAME || 'Dartrans & Henzel';
+const COMPANY_LOGO = import.meta.env.COMPANY_LOGO || '/logo_optimized.webp';
+const COMPANY_ADDRESS = {
+  street: import.meta.env.COMPANY_ADDRESS_STREET || 'ul. Główna 97',
+  city: import.meta.env.COMPANY_ADDRESS_CITY || 'Biskupice',
+  region: import.meta.env.COMPANY_ADDRESS_REGION || 'Wielkopolskie',
+  postal: import.meta.env.COMPANY_ADDRESS_POSTAL || '62-007',
+  country: import.meta.env.COMPANY_ADDRESS_COUNTRY || 'PL'
+};
+const JOB_TITLE = import.meta.env.JOB_TITLE || 'C+E Truck Driver';
+const JOB_DATE_POSTED = import.meta.env.JOB_DATE_POSTED || '2025-01-21';
+const JOB_VALID_THROUGH = import.meta.env.JOB_VALID_THROUGH || '2026-12-31';
+const SALARY_CURRENCY = import.meta.env.SALARY_CURRENCY || 'EUR';
+const SALARY_MIN = parseInt(import.meta.env.SALARY_MIN || '2600');
+const SALARY_MAX = parseInt(import.meta.env.SALARY_MAX || '3000');
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  url?: string;
+  type?: 'website' | 'article';
+  noindex?: boolean;
+}
+
+const { 
+  title, 
+  description, 
+  image = import.meta.env.OG_IMAGE || '/og-image.jpg', 
+  url,
+  type = 'website',
+  noindex = false
+} = Astro.props;
+
+const canonicalURL = new URL(url || Astro.url.pathname, Astro.site);
+const imageURL = new URL(image, Astro.site);
+const siteName = SITE_NAME;
+---
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalURL} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={imageURL} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:locale" content="en_US" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={canonicalURL} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageURL} />
+
+<!-- JSON-LD Structured Data for Job Posting -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "JobPosting",
+  "title": JOB_TITLE,
+  "description": description,
+  "datePosted": JOB_DATE_POSTED,
+  "validThrough": JOB_VALID_THROUGH,
+  "employmentType": ["FULL_TIME"],
+  "hiringOrganization": {
+    "@type": "Organization",
+    "name": COMPANY_NAME,
+    "sameAs": canonicalURL.origin,
+    "logo": {
+      "@type": "ImageObject",
+      "url": new URL(COMPANY_LOGO, Astro.site).toString()
+    }
+  },
+  "jobLocation": {
+    "@type": "Place",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": COMPANY_ADDRESS.street,
+      "addressLocality": COMPANY_ADDRESS.city,
+      "addressRegion": COMPANY_ADDRESS.region,
+      "postalCode": COMPANY_ADDRESS.postal,
+      "addressCountry": COMPANY_ADDRESS.country
+    }
+  },
+  "baseSalary": {
+    "@type": "MonetaryAmount",
+    "currency": SALARY_CURRENCY,
+    "value": {
+      "@type": "QuantitativeValue",
+      "minValue": SALARY_MIN,
+      "maxValue": SALARY_MAX,
+      "unitText": "MONTH"
+    }
+  },
+  "qualifications": "C+E driving license, minimum 21 years old, international driving experience",
+  "responsibilities": "Long-distance freight transport across Europe, operating modern Euro 6 trucks",
+  "benefits": "Competitive salary, modern fleet, flexible work schedules, ECO bonuses",
+  "workHours": "Flexible schedules: 4/1, 5/1, 6/2, 8/4 weeks",
+  "jobBenefits": [
+    "Health insurance",
+    "Modern truck fleet (Volvo, Scania, Mercedes, MAN)",
+    "ECO driving bonuses",
+    "Professional uniform",
+    "Own service center"
+  ]
+})} />
+
+<!-- Additional Organization Schema -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": COMPANY_NAME,
+  "url": canonicalURL.origin,
+  "logo": new URL(COMPANY_LOGO, Astro.site).toString(),
+  "description": "Professional freight transport company in Poland with 15+ years of experience",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": COMPANY_ADDRESS.street,
+    "addressLocality": "Biskupice",
+    "addressRegion": "Wielkopolskie",
+    "postalCode": "62-007",
+    "addressCountry": "PL"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "Recruitment",
+    "availableLanguage": ["English", "Polish", "Russian", "Ukrainian", "German"]
+  }
+})} />

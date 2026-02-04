@@ -1,0 +1,68 @@
+---
+// src/components/Footer.astro
+const COMPANY_NAME = import.meta.env.COMPANY_NAME || 'DARTRANS & HENZEL Sp. z o.o.';
+const COMPANY_ADDRESS_POSTAL = import.meta.env.COMPANY_ADDRESS_POSTAL || '62-007';
+const COMPANY_ADDRESS_CITY = import.meta.env.COMPANY_ADDRESS_CITY || 'Biskupice';
+const COMPANY_ADDRESS_STREET = import.meta.env.COMPANY_ADDRESS_STREET || 'ul. Główna 97';
+const WHATSAPP_LINK = import.meta.env.WHATSAPP_LINK || 'https://wa.me/';
+const TELEGRAM_LINK = import.meta.env.TELEGRAM_LINK || 'https://t.me/TransLogistic';
+const COMPANY_LOGO = import.meta.env.COMPANY_LOGO || '/logo_optimized.webp';
+---
+
+<footer class="bg-neutral border-t border-white/5 pt-16 pb-8 px-4 reveal">
+  <div class="max-w-[85rem] mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+      
+      <div class="md:col-span-2">
+        <a href="/" class="flex-none focus:outline-none transition-transform hover:scale-105 inline-block mb-6">
+          <img 
+            src={COMPANY_LOGO}
+            alt={`${COMPANY_NAME} Logo`}
+            class="h-12 w-auto brightness-0 invert opacity-90" 
+          />
+        </a>
+        <p class="text-lg font-sans text-white/60 max-w-sm leading-relaxed mb-6">
+          Professional freight transport across Europe. Reliable partner for experienced C+E drivers.
+        </p>
+        <div class="flex items-center gap-4">
+          <a href={TELEGRAM_LINK} target="_blank" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/60 hover:bg-primary hover:text-white transition-all">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 3L3 10.5l4.5 1.5L21 3z" /></svg>
+          </a>
+          <a href={WHATSAPP_LINK} target="_blank" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/60 hover:bg-green-500 hover:text-white transition-all">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.472 14.382A7.5 7.5 0 1 1 9.618 6.528l.01.01-.655 2.593 2.644-.7.006.005a.75.75 0 0 0 .69-.13l1.59 1.59c-.08.257-.153.516-.22.776z" /></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-white font-heading font-bold uppercase tracking-widest text-xs mb-6">Sections</h3>
+        <ul class="space-y-4 font-sans">
+          <li><a href="#benefits" class="text-white/70 hover:text-primary font-medium transition-colors">Benefits</a></li>
+          <li><a href="#fleet" class="text-white/70 hover:text-primary font-medium transition-colors">Our Fleet</a></li>
+          <li><a href="#company" class="text-white/70 hover:text-primary font-medium transition-colors">About Us</a></li>
+          <li><a href="#faq" class="text-white/70 hover:text-primary font-medium transition-colors">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-white font-heading font-bold uppercase tracking-widest text-xs mb-6">Contact</h3>
+        <p class="text-white/50 text-sm font-sans font-medium leading-relaxed">
+          {COMPANY_NAME}<br>
+          {COMPANY_ADDRESS_POSTAL} {COMPANY_ADDRESS_CITY}<br>
+          {COMPANY_ADDRESS_STREET}<br>
+          Polska<br>
+          </p>
+      </div>
+    </div>
+
+    <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+      <div class="text-xs font-bold font-sans text-white/30 uppercase tracking-widest">
+        © {new Date().getFullYear()} {COMPANY_NAME} All rights reserved.
+      </div>
+      <div class="flex gap-8">
+        <a href="/privacy" class="text-xs font-bold font-sans text-white/60 hover:text-white uppercase tracking-widest transition-colors">Privacy</a>
+        <a href="/terms" class="text-xs font-bold font-sans text-white/60 hover:text-white uppercase tracking-widest transition-colors">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,83 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Footer from '../components/Footer.astro';
+
+const COMPANY_NAME = import.meta.env.COMPANY_NAME || 'DARTRANS & HENZEL Sp. z o.o.';
+const COMPANY_ADDRESS_STREET = import.meta.env.COMPANY_ADDRESS_STREET || 'ul. Główna 97';
+const COMPANY_ADDRESS_POSTAL = import.meta.env.COMPANY_ADDRESS_POSTAL || '62-007';
+const COMPANY_ADDRESS_CITY = import.meta.env.COMPANY_ADDRESS_CITY || 'Biskupice';
+const COMPANY_EMAIL = import.meta.env.COMPANY_EMAIL || 'office@dartrans.pl';
+const SITE_NAME = import.meta.env.SITE_NAME || 'Dartrans & Henzel';
+---
+
+<MainLayout title={`Privacy Policy | ${SITE_NAME}`}>
+  <main class="bg-base-100 pt-32 pb-24">
+    <div class="max-w-3xl mx-auto px-4">
+      <h1 class="text-4xl md:text-5xl font-heading font-black text-base-content mb-8 tracking-tight">Privacy Policy</h1>
+      
+      <div class="space-y-8 font-sans text-base-content/80 leading-relaxed">
+        <section>
+          <p class="mb-4">
+            This Privacy Policy defines the principles of processing and protecting personal data provided by Users in connection with using the {SITE_NAME} website.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-heading font-bold text-base-content mb-4">1. Data Controller</h2>
+          <p>
+            The controller of personal data contained in the website is <strong>{COMPANY_NAME}</strong> with its registered office at {COMPANY_ADDRESS_STREET}, {COMPANY_ADDRESS_POSTAL} {COMPANY_ADDRESS_CITY}, Poland, registered in the Register of Entrepreneurs. Email address: <a href={`mailto:${COMPANY_EMAIL}`} class="text-primary hover:underline">{COMPANY_EMAIL}</a>.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-heading font-bold text-base-content mb-4">2. Purposes of Data Processing</h2>
+          <p class="mb-2">Personal data is processed for the following purposes:</p>
+          <ul class="list-disc list-outside ml-5 space-y-2">
+            <li>Conducting the recruitment process for C+E truck drivers;</li>
+            <li>Contacting the User in response to inquiries submitted via the contact form or messengers (WhatsApp, Telegram);</li>
+            <li>Fulfilling legal obligations incumbent upon the Controller.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-heading font-bold text-base-content mb-4">3. Types of Data Processed</h2>
+          <p>
+            The Controller may process the following personal data of Users: first and last name, phone number, email address, information about professional experience, and other data voluntarily provided in the application form.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-heading font-bold text-base-content mb-4">4. User Rights</h2>
+          <p>
+            The User has the right to:
+          </p>
+          <ul class="list-disc list-outside ml-5 space-y-2 mt-2">
+            <li>Access the content of their data;</li>
+            <li>Rectify, delete, or restrict processing;</li>
+            <li>Object to processing;</li>
+            <li>Withdraw consent at any time (without affecting the lawfulness of processing carried out before its withdrawal).</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-heading font-bold text-base-content mb-4">5. Cookies</h2>
+          <p>
+            The website uses cookies to ensure proper functioning of the site and for statistical purposes. Users can change their browser settings regarding cookies at any time.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-heading font-bold text-base-content mb-4">6. Contact</h2>
+          <p>
+            For matters related to personal data protection, please contact us via email at: <a href={`mailto:${COMPANY_EMAIL}`} class="text-primary hover:underline">{COMPANY_EMAIL}</a>.
+          </p>
+        </section>
+
+        <div class="pt-8 border-t border-base-content/10">
+          <p class="text-sm text-base-content/60">Last updated: January 21, 2026</p>
+        </div>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</MainLayout>

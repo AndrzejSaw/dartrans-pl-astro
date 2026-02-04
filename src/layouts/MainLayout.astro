@@ -1,0 +1,86 @@
+---
+// src/layouts/MainLayout.astro
+import CookieConsent from '../components/CookieConsent.astro';
+import '../styles/global.css';
+const { title } = Astro.props;
+const GTM_ID = import.meta.env.GTM_ID;
+---
+<html lang="en" data-theme="corporate" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    <title>{title}</title>
+    
+    <!-- DNS Prefetch for external resources -->
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://transport.nexus-talent.eu" crossorigin>
+    
+    <slot name="head" />
+
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  // Стандартная инициализация
+  function gtag(){ dataLayer.push(arguments); }
+  window.gtag = gtag;
+
+  const savedConsent = localStorage.getItem('cookie-consent');
+  
+  if (savedConsent) {
+    gtag('consent', 'default', JSON.parse(savedConsent));
+  } else {
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_advertising': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied',
+      'wait_for_update': 500
+    });
+  }
+</script>
+
+    <script type="text/partytown" define:vars={{ GTM_ID }}>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer', GTM_ID);
+    </script>
+  </head>
+  <body class="bg-base-100 text-base-content font-sans antialiased text-base md:text-lg">
+    <noscript><iframe src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <slot />
+
+    <CookieConsent />
+    
+    <script>
+      import "preline/dist/preline.js";
+
+      // Scroll Reveal Observer (ваша анимация появления блоков)
+      document.addEventListener('DOMContentLoaded', () => {
+        const observerOptions = {
+          root: null,
+          rootMargin: '0px',
+          threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('active');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+          observer.observe(el);
+        });
+      });
+    </script>
+  </body>
+</html>

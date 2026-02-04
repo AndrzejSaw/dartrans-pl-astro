@@ -1,0 +1,90 @@
+---
+// src/components/Fleet.astro
+import { Image } from 'astro:assets';
+import photo6 from '../assets/photo_6.webp';
+import photo7 from '../assets/photo_7.webp';
+
+const trucks = [
+  {
+    brand: "Mercedes-Benz",
+    model: "Actros MP5 L",
+    image: photo6,
+    description: "The Future of Long-Haul Trucking. Experience the pinnacle of efficiency and safety. The Actros L redefines long-distance transport with its revolutionary MirrorCam system and Multimedia Cockpit.",
+    features: ["MirrorCam System", "Active Drive Assist 2", "Multimedia Cockpit", "Euro 6d Engine"],
+    tag: "Euro 6"
+  },
+  {
+    brand: "Scania",
+    model: "R450 (Next Gen)",
+    image: photo7,
+    description: "Legendary Reliability Meets Modern Efficiency. Designed for ultimate uptime and profitability. The Next Generation Scania R-series combines a robust 450hp engine with Scania's renowned fuel economy.",
+    features: ["Opticruise Gearbox", "Retarder System", "LED Headlights", "Cabin Air Suspension"],
+    tag: "Next Gen"
+  }
+];
+---
+
+<section id="fleet" class="py-24 md:py-32 bg-base-100 reveal">
+  <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-2xl mx-auto text-center mb-16">
+      <h2 class="text-4xl font-heading font-extrabold text-base-content sm:text-5xl uppercase tracking-tight">
+        Our <span class="text-primary">Fleet</span>
+      </h2>
+      <p class="mt-6 text-base md:text-lg text-base-content/70 leading-relaxed">
+        Drive the best equipment on European roads. Our fleet consists of premium <strong class="text-primary">Mercedes, Volvo, and Scania</strong> trucks no older than <strong class="text-base-content">5 years</strong>, equipped with modern <strong class="text-base-content">curtain-side trailers (tautliners)</strong> and <strong class="text-base-content">tippers</strong>. We guarantee perfect technical condition and full maintenance at company expense.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+      {trucks.map((truck) => (
+        <div class="group flex flex-col h-full bg-base-100 border border-base-300 shadow-sm rounded-3xl overflow-hidden hover:shadow-xl hover:border-primary/20 transition-all duration-300">
+          <!-- Image Section -->
+          <div class="relative pt-[60%] overflow-hidden bg-base-200">
+            <Image 
+              src={truck.image} 
+              alt={`${truck.brand} ${truck.model} - modern truck for international transport`}
+              widths={[400, 600, 800, 1000]}
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
+              quality={80}
+              loading="lazy"
+              decoding="async"
+              class="absolute top-0 left-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+            <div class="absolute top-6 left-6">
+              <span class="badge badge-primary font-bold font-heading px-4 py-3 shadow-lg rounded-full">
+                {truck.tag}
+              </span>
+            </div>
+          </div>
+          
+          <!-- Content Section -->
+          <div class="p-6 md:p-8 flex flex-col h-full">
+            <!-- Title -->
+            <div class="mb-4">
+              <p class="text-sm font-heading font-bold text-primary uppercase tracking-wide mb-1">{truck.brand}</p>
+              <h3 class="text-2xl font-heading font-black text-base-content tracking-tight">{truck.model}</h3>
+            </div>
+            
+            <!-- Description -->
+            <p class="text-base text-base-content/70 mb-6 leading-relaxed">{truck.description}</p>
+            
+            <!-- Features List -->
+            <div class="mt-auto pt-6 border-t border-base-content/10">
+              <p class="text-xs font-heading font-bold text-base-content/50 uppercase tracking-widest mb-4">Key Features</p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {truck.features.map((feature) => (
+                  <div class="flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <span class="text-sm font-medium text-base-content/80">{feature}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

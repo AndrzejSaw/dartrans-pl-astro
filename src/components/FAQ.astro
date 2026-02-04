@@ -1,0 +1,118 @@
+---
+// src/components/FAQ.astro
+---
+
+<section id="faq" class="py-24 bg-base-100 reveal">
+  <div class="max-w-[85rem] px-4 sm:px-6 lg:px-8 mx-auto">
+    <div class="max-w-2xl mx-auto text-center mb-10 lg:mb-14">
+      <h2 class="text-3xl font-heading font-black text-primary sm:text-4xl uppercase tracking-tight">
+        Frequently Asked <span class="text-primary">Questions</span>
+      </h2>
+    </div>
+
+    <div class="max-w-3xl mx-auto">
+      <div class="hs-accordion-group">
+        
+        <div class="hs-accordion active bg-base-100 border border-transparent rounded-2xl p-6 mb-4 transition-all duration-300 hs-accordion-active:bg-base-100 hs-accordion-active:border-base-300" id="hs-basic-heading-one">
+          <button class="hs-accordion-toggle group inline-flex items-center gap-x-3 w-full font-heading font-bold text-start text-base-content hover:text-primary focus:outline-none transition" 
+                  aria-expanded="true"
+                  aria-controls="hs-basic-collapse-one"
+                  aria-label="What is the work schedule in your company">
+            <svg class="hs-accordion-active:hidden block size-5 text-base-content/70 group-hover:text-primary" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+            <svg class="hs-accordion-active:block hidden size-5 text-primary" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg>
+            What is the work schedule in your company?
+          </button>
+          <div id="hs-basic-collapse-one" class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300" role="region" aria-labelledby="hs-basic-heading-one">
+            <p class="text-base-content/70 mt-4 leading-relaxed font-sans">
+              We offer several work schedules to choose from: 4 weeks work / 1 week off, 5/1, 6/2, 8/4, or weekends at home. Individual schedule negotiation is possible.
+            </p>
+          </div>
+        </div>
+
+        <div class="hs-accordion bg-base-100 border border-transparent rounded-2xl p-6 mb-4 transition-all duration-300 hs-accordion-active:bg-base-100 hs-accordion-active:border-base-300" id="hs-basic-heading-two">
+          <button class="hs-accordion-toggle group inline-flex items-center gap-x-3 w-full font-heading font-bold text-start text-base-content hover:text-primary focus:outline-none transition" 
+                  aria-expanded="false"
+                  aria-controls="hs-basic-collapse-two"
+                  aria-label="What truck models and trailers do you use">
+            <svg class="hs-accordion-active:hidden block size-5 text-base-content/70 group-hover:text-primary" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+            <svg class="hs-accordion-active:block hidden size-5 text-primary" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg>
+            What truck models and trailers do you use?
+          </button>
+          <div id="hs-basic-collapse-two" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" role="region" aria-labelledby="hs-basic-heading-two">
+            <p class="text-base-content/70 mt-4 leading-relaxed font-sans">
+              We use latest model trucks that meet Euro 6 environmental standards - SCANIA and VOLVO brands. Trailers are mainly tilt/curtain siders.
+            </p>
+          </div>
+        </div>
+
+        <div class="hs-accordion bg-base-100 border border-transparent rounded-2xl p-6 mb-4 transition-all duration-300 hs-accordion-active:bg-base-100 hs-accordion-active:border-base-300" id="hs-basic-heading-three">
+          <button class="hs-accordion-toggle group inline-flex items-center gap-x-3 w-full font-heading font-bold text-start text-base-content hover:text-primary focus:outline-none transition" 
+                  aria-expanded="false"
+                  aria-controls="hs-basic-collapse-three"
+                  aria-label="What documents are required for employment">
+            <svg class="hs-accordion-active:hidden block size-5 text-base-content/70 group-hover:text-primary" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+            <svg class="hs-accordion-active:block hidden size-5 text-primary" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg>
+            What documents are required for employment?
+          </button>
+          <div id="hs-basic-collapse-three" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" role="region" aria-labelledby="hs-basic-heading-three">
+            <p class="text-base-content/70 mt-4 leading-relaxed font-sans">
+              You will need: passport, C+E driver's license, Code 95, chip card, visa or residence permit (Karta Pobytu).
+            </p>
+          </div>
+        </div>
+
+        <div class="hs-accordion bg-base-100 border border-transparent rounded-2xl p-6 mb-4 transition-all duration-300 hs-accordion-active:bg-base-100 hs-accordion-active:border-base-300" id="hs-basic-heading-four">
+          <button class="hs-accordion-toggle group inline-flex items-center gap-x-3 w-full font-heading font-bold text-start text-base-content hover:text-primary focus:outline-none transition" 
+                  aria-expanded="false"
+                  aria-controls="hs-basic-collapse-four"
+                  aria-label="How is the work with dispatchers organized">
+            <svg class="hs-accordion-active:hidden block size-5 text-base-content/70 group-hover:text-primary" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+            <svg class="hs-accordion-active:block hidden size-5 text-primary" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg>
+            How is the work with dispatchers organized?
+          </button>
+          <div id="hs-basic-collapse-four" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" role="region" aria-labelledby="hs-basic-heading-four">
+            <p class="text-base-content/70 mt-4 leading-relaxed font-sans">
+              Our dispatchers speak Russian, Polish, and English and provide 24/7 support. You can reach them anytime for assistance with any issues.
+            </p>
+          </div>
+        </div>
+
+        <div class="hs-accordion bg-base-100 border border-transparent rounded-2xl p-6 mb-4 transition-all duration-300 hs-accordion-active:bg-base-100 hs-accordion-active:border-base-300" id="hs-basic-heading-five">
+          <button class="hs-accordion-toggle group inline-flex items-center gap-x-3 w-full font-heading font-bold text-start text-base-content hover:text-primary focus:outline-none transition" 
+                  aria-expanded="false"
+                  aria-controls="hs-basic-collapse-five"
+                  aria-label="What routes are used for transportation">
+            <svg class="hs-accordion-active:hidden block size-5 text-base-content/70 group-hover:text-primary" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+            <svg class="hs-accordion-active:block hidden size-5 text-primary" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg>
+            Which countries do you operate in?
+          </button>
+          <div id="hs-basic-collapse-five" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" role="region" aria-labelledby="hs-basic-heading-five">
+            <p class="text-base-content/70 mt-4 leading-relaxed font-sans mb-3">
+              We operate throughout the European Union with primary focus on <span class="font-bold text-primary">Benelux</span> (Belgium, Netherlands, Luxembourg), <span class="font-bold text-primary">Germany</span>, and <span class="font-bold text-primary">France</span>. Additionally, we service routes to Switzerland, Italy, Spain, and Portugal.
+            </p>
+            <p class="text-base-content/60 text-sm leading-relaxed font-sans">
+              All routes are well-established with consistent loading points, comfortable rest areas, and proven partnerships that ensure steady work and predictable schedules.
+            </p>
+          </div>
+        </div>
+
+        <div class="hs-accordion bg-base-100 border border-transparent rounded-2xl p-6 transition-all duration-300 hs-accordion-active:bg-base-100 hs-accordion-active:border-base-300" id="hs-basic-heading-six">
+          <button class="hs-accordion-toggle group inline-flex items-center gap-x-3 w-full font-heading font-bold text-start text-base-content hover:text-primary focus:outline-none transition" 
+                  aria-expanded="false"
+                  aria-controls="hs-basic-collapse-six"
+                  aria-label="Do I need to do pallet exchanges or night driving">
+            <svg class="hs-accordion-active:hidden block size-5 text-base-content/70 group-hover:text-primary" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+            <svg class="hs-accordion-active:block hidden size-5 text-primary" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg>
+            Do I need to do pallet exchanges or night driving?
+          </button>
+          <div id="hs-basic-collapse-six" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" role="region" aria-labelledby="hs-basic-heading-six">
+            <p class="text-base-content/70 mt-4 leading-relaxed font-sans">
+              <span class="font-bold text-primary">No!</span> At Dartrans, we prioritize driver comfort and safety. You will <span class="font-bold">NOT</span> be required to exchange pallets, swap trailers, or drive at night. Our routes are designed to be straightforward and stress-free, allowing you to focus on safe driving and maintaining a healthy work-life balance.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,77 @@
+---
+// src/components/Stats.astro
+---
+
+<section id="stats" class="py-24 md:py-32 bg-base-100 overflow-hidden border-b border-base-content/5">
+  <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-16 lg:gap-24 reveal"
+         x-data="{ 
+            visible: false,
+            count1: 0,
+            count2: 0,
+            count3: 0,
+            startCounting() {
+                let interval1 = setInterval(() => { 
+                    if (this.count1 < 120) { this.count1 += 5; } 
+                    else { this.count1 = 120; clearInterval(interval1); } 
+                }, 30);
+                
+                let interval2 = setInterval(() => { 
+                    if (this.count2 < 15) { this.count2 += 1; } 
+                    else { this.count2 = 15; clearInterval(interval2); } 
+                }, 100);
+                
+                let interval3 = setInterval(() => { 
+                    if (this.count3 < 85) { this.count3 += 5; } 
+                    else { this.count3 = 85; clearInterval(interval3); } 
+                }, 40);
+            }
+         }"
+         x-init="
+            let observer = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting && !visible) {
+                    visible = true;
+                    startCounting();
+                    observer.unobserve($el);
+                }
+            }, { threshold: 0.1 });
+            observer.observe($el);
+         ">
+      
+      <div class="flex flex-col items-center text-center group">
+        <div class="mb-8 p-6 bg-primary/5 rounded-2xl group-hover:bg-primary/10 transition-all duration-500 shadow-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-primary/80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="text-7xl lg:text-8xl font-heading font-extrabold text-primary tracking-tighter mb-6 flex items-baseline justify-center">
+          <span x-text="count1">0</span>
+          <span class="text-4xl lg:text-5xl ml-2 text-primary/50">+</span>
+        </div>
+        <div class="text-sm font-bold font-heading text-base-content/70 uppercase tracking-[0.2em]">Employees</div>
+      </div>
+
+      <div class="flex flex-col items-center text-center group">
+        <div class="mb-8 p-6 bg-primary/5 rounded-2xl group-hover:bg-primary/10 transition-all duration-500 shadow-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-primary/80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="text-7xl lg:text-8xl font-heading font-extrabold text-primary tracking-tighter mb-6 flex items-baseline justify-center">
+          <span x-text="count2">0</span>
+          <span class="text-4xl lg:text-5xl ml-2 text-primary/50">+</span>
+        </div>
+        <div class="text-sm font-bold font-heading text-base-content/70 uppercase tracking-[0.2em]">Years on Market</div>
+      </div>
+
+      <div class="flex flex-col items-center text-center group">
+        <div class="mb-8 p-6 bg-primary/5 rounded-2xl group-hover:bg-primary/10 transition-all duration-500 shadow-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-primary/80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 17h4V5H2v12h3m15 0h1v-3.34a4 4 0 0 0-1.17-2.83L13 7V2H2v12"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+        </div>
+        <div class="text-7xl lg:text-8xl font-heading font-extrabold text-primary tracking-tighter mb-6 flex items-baseline justify-center">
+          <span x-text="count3">0</span>
+          <span class="text-4xl lg:text-5xl ml-2 text-primary/50">+</span>
+        </div>
+        <div class="text-sm font-bold font-heading text-base-content/70 uppercase tracking-[0.2em]">Trucks</div>
+      </div>
+
+    </div>
+  </div>
+</section>

@@ -1,0 +1,80 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Footer from '../components/Footer.astro';
+
+const COMPANY_NAME = import.meta.env.COMPANY_NAME || 'DARTRANS & HENZEL Sp. z o.o.';
+const COMPANY_ADDRESS_STREET = import.meta.env.COMPANY_ADDRESS_STREET || 'ul. Główna 97';
+const COMPANY_ADDRESS_POSTAL = import.meta.env.COMPANY_ADDRESS_POSTAL || '62-007';
+const COMPANY_ADDRESS_CITY = import.meta.env.COMPANY_ADDRESS_CITY || 'Biskupice';
+const SITE_NAME = import.meta.env.SITE_NAME || 'Dartrans & Henzel';
+---
+
+<MainLayout title={`Terms of Service | ${SITE_NAME}`}>
+  <main class="bg-base-100 pt-32 pb-24">
+    <div class="max-w-3xl mx-auto px-4">
+      <h1 class="text-4xl md:text-5xl font-heading font-black text-base-content mb-8 tracking-tight">Terms of Service</h1>
+      
+      <div class="space-y-8 font-sans text-base-content/80 leading-relaxed">
+        <section>
+          <p class="mb-4">
+            These Terms of Service define the rules for using the {SITE_NAME} website, available at the company's internet address.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-heading font-bold text-base-content mb-4">1. General Provisions</h2>
+          <ul class="list-disc list-outside ml-5 space-y-2">
+            <li>The owner of the website is <strong>{COMPANY_NAME}</strong> with its registered office at {COMPANY_ADDRESS_STREET}, {COMPANY_ADDRESS_POSTAL} {COMPANY_ADDRESS_CITY}, Poland.</li>
+            <li>The website is informational and recruitment-oriented. Its purpose is to present job offers for C+E truck drivers and enable contact with the employer.</li>
+            <li>Using the website is voluntary and free of charge for all users.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-heading font-bold text-base-content mb-4">2. Electronic Services Provided</h2>
+          <p>
+            Through the website, the Service Provider offers the following services:
+          </p>
+          <ul class="list-disc list-outside ml-5 space-y-2 mt-2">
+            <li>Providing information about job offers and employment conditions;</li>
+            <li>Enabling the submission of recruitment applications via a contact form;</li>
+            <li>Redirecting to external messengers (WhatsApp, Telegram) for quick contact.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-heading font-bold text-base-content mb-4">3. Terms of Use</h2>
+          <p>
+            Users are obliged to use the website in a manner consistent with the law and good practices, respecting the personal rights and intellectual property rights of third parties. It is prohibited for Users to provide content of an unlawful nature.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-heading font-bold text-base-content mb-4">4. Liability</h2>
+          <p>
+            The Administrator makes every effort to ensure that the information contained on the website is current and reliable. However, it is not liable for the consequences of using information contained on the website by the User, in particular for decisions made based on it.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-heading font-bold text-base-content mb-4">5. Intellectual Property</h2>
+          <p>
+            All content posted on the website (texts, graphics, logos) is protected by copyright and belongs to {COMPANY_NAME} or its partners. Copying and distributing them without the owner's consent is prohibited.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-heading font-bold text-base-content mb-4">6. Final Provisions</h2>
+          <p>
+            The Administrator reserves the right to make changes to these Terms of Service. All changes take effect from the moment they are published on the website.
+          </p>
+        </section>
+
+        <div class="pt-8 border-t border-base-content/10">
+          <p class="text-sm text-base-content/60">Last updated: January 21, 2026</p>
+        </div>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</MainLayout>

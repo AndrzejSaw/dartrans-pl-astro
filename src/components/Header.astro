@@ -1,0 +1,60 @@
+---
+// src/components/Header.astro
+---
+<header 
+  class="fixed top-0 left-0 w-full z-50 py-3 transition-all duration-300 border-b"
+  x-data="{ atTop: true }"
+  @scroll.window="atTop = (window.pageYOffset < 20)"
+  :class="{ 'bg-neutral border-white/5 shadow-none': atTop, 'bg-base-100/90 backdrop-blur-xl shadow-sm border-base-content/5': !atTop }"
+>
+  <nav class="max-w-[85rem] w-full mx-auto px-4 md:flex md:items-center md:justify-between" aria-label="Global">
+    <div class="flex items-center justify-between">
+      <a class="flex-none focus:outline-none" href="/" aria-label="Dartrans Home">
+        <img 
+          src="/logo_optimized.webp"
+          width="120"
+          height="40" 
+          alt="Dartrans Logo" 
+          loading="eager"
+          decoding="async"
+          class="h-12 w-auto md:h-14"
+          :class="{ 'brightness-0 invert opacity-90': atTop, 'opacity-100': !atTop }" 
+        />
+      </a>
+
+      <div class="md:hidden">
+        <button type="button" 
+                class="hs-collapse-toggle flex justify-center items-center size-10 rounded-full border transition-colors focus:outline-none focus:ring-2 focus:ring-primary" 
+                :class="{ 'border-white/20 text-white hover:bg-white/10': atTop, 'border-base-content/10 text-base-content hover:bg-base-200': !atTop }"
+                data-hs-collapse="#hs-navbar-hc-default"
+                aria-label="Toggle navigation menu"
+                aria-expanded="false">
+          <svg class="hs-collapse-open:hidden size-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="18" y2="18"/></svg>
+          <svg class="hs-collapse-open:block hidden size-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          <span class="sr-only">Toggle menu</span>
+        </button>
+      </div>
+    </div>
+
+    <div id="hs-navbar-hc-default" class="hidden hs-collapse overflow-hidden transition-all duration-300 basis-full grow md:block">
+      <div class="flex flex-col gap-6 mt-5 md:flex-row md:items-center md:justify-end md:mt-0 md:ps-5 pe-2">
+        <a class="font-medium transition-colors py-2 text-[15px]" 
+           :class="{ 'text-white/80 hover:text-white': atTop, 'text-base-content/70 hover:text-primary': !atTop }"
+           href="#benefits">Benefits</a>
+        <a class="font-medium transition-colors py-2 text-[15px]" 
+           :class="{ 'text-white/80 hover:text-white': atTop, 'text-base-content/70 hover:text-primary': !atTop }"
+           href="#fleet">Fleet</a>
+        <a class="font-medium transition-colors py-2 text-[15px]" 
+           :class="{ 'text-white/80 hover:text-white': atTop, 'text-base-content/70 hover:text-primary': !atTop }"
+           href="#faq">FAQ</a>
+        
+        <a class="btn btn-primary btn-md rounded-full px-8 font-bold font-heading text-primary-content shadow-lg shadow-primary/20 border-none transition-all hover:scale-105" 
+           href="#apply"
+           data-gtm-event="cta_click"
+           data-gtm-location="header">
+          Apply Now
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>

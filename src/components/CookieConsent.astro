@@ -1,0 +1,87 @@
+---
+// src/components/CookieConsent.astro
+---
+<div 
+  x-data="{ 
+    show: false,
+    init() {
+      if (!localStorage.getItem('cookie-consent')) {
+        setTimeout(() => this.show = true, 1000);
+      }
+    },
+    acceptAll() {
+      const consent = {
+        'ad_storage': 'granted',
+        'ad_user_data': 'granted',
+        'ad_advertising': 'granted',
+        'ad_personalization': 'granted',
+        'analytics_storage': 'granted'
+      };
+      this.saveConsent(consent);
+    },
+    rejectAll() {
+      const consent = {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_advertising': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied'
+      };
+      this.saveConsent(consent);
+    },
+    saveConsent(consent) {
+      try {
+        localStorage.setItem('cookie-consent', JSON.stringify(consent));
+
+        // Прямой пуш в dataLayer (самый безопасный путь для Partytown)
+        if (window.dataLayer) {
+          window.dataLayer.push(['consent', 'update', consent]);
+          window.dataLayer.push({
+            'event': 'consent_updated',
+            'consent_status': consent.ad_storage
+          });
+        }
+
+        this.show = false;
+      } catch (e) {
+        console.error('Consent error:', e);
+        this.show = false;
+      }
+    }
+  }"
+  x-show="show"
+  x-cloak
+  x-transition:enter="transition ease-out duration-500"
+  x-transition:enter-start="opacity-0 translate-y-10"
+  x-transition:enter-end="opacity-100 translate-y-0"
+  class="fixed bottom-6 left-6 right-6 z-[100] max-w-md ml-auto"
+>
+  <div class="bg-base-100 border border-base-300 shadow-2xl rounded-[2.5rem] p-6 md:p-8">
+    <div class="flex items-start gap-4 mb-6">
+      <div class="bg-primary/10 p-3 rounded-2xl shrink-0 text-primary">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5Z"/><circle cx="12" cy="12" r="1"/><circle cx="15" cy="15" r="1"/><circle cx="9" cy="15" r="1"/><circle cx="9" cy="10" r="1"/><circle cx="13" cy="7" r="1"/>
+        </svg>
+      </div>
+      <div>
+        <h3 class="text-xl font-heading font-black text-base-content uppercase tracking-tight mb-1">Cookies</h3>
+        <p class="text-[11px] font-sans text-base-content/60 leading-relaxed">
+          We use cookies to analyze traffic and optimize advertising on Google. More details in the <a href="/privacy" class="font-bold hover:underline" style="color: #0066cc;">Privacy Policy</a>.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-3">
+      <button @click="rejectAll()" class="btn btn-ghost btn-sm rounded-xl font-heading font-bold uppercase tracking-widest text-[10px]">
+        Reject
+      </button>
+      <button @click="acceptAll()" class="btn btn-primary btn-sm rounded-xl font-heading font-bold uppercase tracking-widest text-[10px] shadow-lg shadow-primary/20 border-none transition-transform active:scale-95">
+        Accept All
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  [x-cloak] { display: none !important; }
+</style>
