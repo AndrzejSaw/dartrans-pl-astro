@@ -25,7 +25,7 @@ const FormSchema = z.object({
   whatsapp_phone: z.string()
     .regex(/^\+?[\d\s]{10,20}$/, 'Phone must contain 10-15 digits with optional + prefix and spaces')
     .transform(val => val.replace(/\s/g, '')),
-  citizenship: z.enum(['POLAND', 'OTHER'], { 
+  citizenship: z.enum(['POLSKA', 'OTHER'], { 
     errorMap: () => ({ message: 'Invalid citizenship value' }) 
   }),
   has_experience: z.enum(['YES', 'NO'], { 
@@ -144,7 +144,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       return new Response(
         JSON.stringify({ 
           message: 'Failed to submit application. Please try again later.',
-          debug: process.env.NODE_ENV === 'development' ? errorText : undefined
+          debug: import.meta.env.MODE === 'development' ? errorText : undefined
         }),
         { 
           status: 502,
