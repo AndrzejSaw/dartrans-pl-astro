@@ -35,7 +35,8 @@ const FormSchema = z.object({
     errorMap: () => ({ message: 'Invalid Code 95 value' }) 
   }),
   start_date: z.string()
-    .regex(/^\d{4}-\d{2}-\d{2}$/, 'Date must be in YYYY-MM-DD format'),
+    .regex(/^\d{4}-\d{2}-\d{2}$/, 'Date must be in YYYY-MM-DD format')
+    .or(z.literal('')),
   cover_letter: z.string()
     .max(1000, 'Cover letter must not exceed 1000 characters')
     .optional()
@@ -91,10 +92,12 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     }
     
     // Validate request body
+    console.log('Raw body received:', JSON.stringify(rawBody, null, 2));
     const validationResult = FormSchema.safeParse(rawBody);
     
     if (!validationResult.success) {
       console.error('Validation failed:', validationResult.error.errors);
+      console.error('Full validation error:', JSON.stringify(validationResult.error, null, 2));
       return new Response(
         JSON.stringify({ 
           message: 'Validation error',

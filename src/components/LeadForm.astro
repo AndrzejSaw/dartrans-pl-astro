@@ -119,6 +119,7 @@ const COMPANY_ADDRESS_CITY = import.meta.env.COMPANY_ADDRESS_CITY || 'Biskupice'
                    this.error = true;
                    this.errorMessage = errorData.message || 'Błąd serwera. Sprawdź poprawność danych.';
                    console.error('Form validation error:', errorData);
+                   console.error('Errors details:', JSON.stringify(errorData, null, 2));
                  }
                } catch (e) {
                  this.error = true;
@@ -205,8 +206,8 @@ const COMPANY_ADDRESS_CITY = import.meta.env.COMPANY_ADDRESS_CITY || 'Biskupice'
           </div>
 
           <div class="form-control w-full">
-            <label class="label" for="lead-start-date"><span class="label-text font-bold font-heading text-base-content/80">KIEDY MOŻESZ ZACZĄĆ? *</span></label>
-            <input type="date" id="lead-start-date" name="start_date" x-model="form.start_date" aria-required="true" class="input input-bordered rounded-xl bg-base-200/50 focus:bg-base-100 transition-all h-12 w-full" required />
+            <label class="label" for="lead-start-date"><span class="label-text font-bold font-heading text-base-content/80">KIEDY MOŻESZ ZACZĄĆ?</span></label>
+<input type="date" id="lead-start-date" name="start_date" x-model="form.start_date" class="input input-bordered rounded-xl bg-base-200/50 focus:bg-base-100 transition-all h-12 w-full" />
           </div>
 
           <div class="form-control w-full">
