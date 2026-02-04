@@ -10,71 +10,71 @@ const COMPANY_EMAIL = import.meta.env.COMPANY_EMAIL || 'office@dartrans.pl';
 const SITE_NAME = import.meta.env.SITE_NAME || 'Dartrans & Henzel';
 ---
 
-<MainLayout title={`Privacy Policy | ${SITE_NAME}`}>
+<MainLayout title={`Polityka Prywatności | ${SITE_NAME}`}>
   <main class="bg-base-100 pt-32 pb-24">
     <div class="max-w-3xl mx-auto px-4">
-      <h1 class="text-4xl md:text-5xl font-heading font-black text-base-content mb-8 tracking-tight">Privacy Policy</h1>
+      <h1 class="text-4xl md:text-5xl font-heading font-black text-base-content mb-8 tracking-tight">Polityka Prywatności</h1>
       
       <div class="space-y-8 font-sans text-base-content/80 leading-relaxed">
         <section>
           <p class="mb-4">
-            This Privacy Policy defines the principles of processing and protecting personal data provided by Users in connection with using the {SITE_NAME} website.
+            Niniejsza Polityka Prywatności określa zasady przetwarzania i ochrony danych osobowych przekazanych przez Użytkowników w związku z korzystaniem ze strony internetowej {SITE_NAME}.
           </p>
         </section>
 
         <section>
-          <h2 class="text-2xl font-heading font-bold text-base-content mb-4">1. Data Controller</h2>
+          <h2 class="text-2xl font-heading font-bold text-base-content mb-4">1. Administrator Danych</h2>
           <p>
-            The controller of personal data contained in the website is <strong>{COMPANY_NAME}</strong> with its registered office at {COMPANY_ADDRESS_STREET}, {COMPANY_ADDRESS_POSTAL} {COMPANY_ADDRESS_CITY}, Poland, registered in the Register of Entrepreneurs. Email address: <a href={`mailto:${COMPANY_EMAIL}`} class="text-primary hover:underline">{COMPANY_EMAIL}</a>.
+            Administratorem danych osobowych zawartych w serwisie jest <strong>{COMPANY_NAME}</strong> z siedzibą w {COMPANY_ADDRESS_STREET}, {COMPANY_ADDRESS_POSTAL} {COMPANY_ADDRESS_CITY}, Polska, wpisaną do Rejestru Przedsiębiorców. Adres email: <a href={`mailto:${COMPANY_EMAIL}`} class="text-primary hover:underline">{COMPANY_EMAIL}</a>.
           </p>
         </section>
 
         <section>
-          <h2 class="text-2xl font-heading font-bold text-base-content mb-4">2. Purposes of Data Processing</h2>
-          <p class="mb-2">Personal data is processed for the following purposes:</p>
+          <h2 class="text-2xl font-heading font-bold text-base-content mb-4">2. Cele Przetwarzania Danych</h2>
+          <p class="mb-2">Dane osobowe przetwarzane są w następujących celach:</p>
           <ul class="list-disc list-outside ml-5 space-y-2">
-            <li>Conducting the recruitment process for C+E truck drivers;</li>
-            <li>Contacting the User in response to inquiries submitted via the contact form or messengers (WhatsApp, Telegram);</li>
-            <li>Fulfilling legal obligations incumbent upon the Controller.</li>
+            <li>Prowadzenie procesu rekrutacji na stanowisko kierowcy C+E;</li>
+            <li>Kontakt z Użytkownikiem w odpowiedzi na zapytania przesłane za pomocą formularza kontaktowego lub komunikatorów (WhatsApp, Telegram);</li>
+            <li>Wypełnienie obowiązków prawnych ciążących na Administratorze.</li>
           </ul>
         </section>
 
         <section>
-          <h2 class="text-2xl font-heading font-bold text-base-content mb-4">3. Types of Data Processed</h2>
+          <h2 class="text-2xl font-heading font-bold text-base-content mb-4">3. Rodzaje Przetwarzanych Danych</h2>
           <p>
-            The Controller may process the following personal data of Users: first and last name, phone number, email address, information about professional experience, and other data voluntarily provided in the application form.
+            Administrator może przetwarzać następujące dane osobowe Użytkowników: imię i nazwisko, numer telefonu, adres email, informacje o doświadczeniu zawodowym oraz inne dane dobrowolnie podane w formularzu aplikacyjnym.
           </p>
         </section>
 
         <section>
-          <h2 class="text-2xl font-heading font-bold text-base-content mb-4">4. User Rights</h2>
+          <h2 class="text-2xl font-heading font-bold text-base-content mb-4">4. Prawa Użytkownika</h2>
           <p>
-            The User has the right to:
+            Użytkownik ma prawo do:
           </p>
           <ul class="list-disc list-outside ml-5 space-y-2 mt-2">
-            <li>Access the content of their data;</li>
-            <li>Rectify, delete, or restrict processing;</li>
-            <li>Object to processing;</li>
-            <li>Withdraw consent at any time (without affecting the lawfulness of processing carried out before its withdrawal).</li>
+            <li>Dostępu do treści swoich danych;</li>
+            <li>Sprostowania, usunięcia lub ograniczenia przetwarzania;</li>
+            <li>Wniesienia sprzeciwu wobec przetwarzania;</li>
+            <li>Cofnięcia zgody w dowolnym momencie (bez wpływu na zgodność z prawem przetwarzania dokonanego przed jej cofnięciem).</li>
           </ul>
         </section>
 
         <section>
-          <h2 class="text-2xl font-heading font-bold text-base-content mb-4">5. Cookies</h2>
+          <h2 class="text-2xl font-heading font-bold text-base-content mb-4">5. Pliki Cookie</h2>
           <p>
-            The website uses cookies to ensure proper functioning of the site and for statistical purposes. Users can change their browser settings regarding cookies at any time.
+            Strona internetowa wykorzystuje pliki cookie w celu zapewnienia prawidłowego działania serwisu oraz w celach statystycznych. Użytkownicy mogą w każdej chwili zmienić ustawienia przeglądarki dotyczące plików cookie.
           </p>
         </section>
 
         <section>
-          <h2 class="text-2xl font-heading font-bold text-base-content mb-4">6. Contact</h2>
+          <h2 class="text-2xl font-heading font-bold text-base-content mb-4">6. Kontakt</h2>
           <p>
-            For matters related to personal data protection, please contact us via email at: <a href={`mailto:${COMPANY_EMAIL}`} class="text-primary hover:underline">{COMPANY_EMAIL}</a>.
+            W sprawach związanych z ochroną danych osobowych prosimy o kontakt pod adresem email: <a href={`mailto:${COMPANY_EMAIL}`} class="text-primary hover:underline">{COMPANY_EMAIL}</a>.
           </p>
         </section>
 
         <div class="pt-8 border-t border-base-content/10">
-          <p class="text-sm text-base-content/60">Last updated: January 21, 2026</p>
+          <p class="text-sm text-base-content/60">Ostatnia aktualizacja: 21 stycznia 2026</p>
         </div>
       </div>
     </div>

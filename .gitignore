@@ -26,6 +26,5 @@ pnpm-debug.log*
 # repomix output
 repomix-output.xml
 
-# markdown files
-*.md 
+
 

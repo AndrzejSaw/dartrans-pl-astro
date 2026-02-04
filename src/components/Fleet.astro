@@ -9,16 +9,16 @@ const trucks = [
     brand: "Mercedes-Benz",
     model: "Actros MP5 L",
     image: photo6,
-    description: "The Future of Long-Haul Trucking. Experience the pinnacle of efficiency and safety. The Actros L redefines long-distance transport with its revolutionary MirrorCam system and Multimedia Cockpit.",
-    features: ["MirrorCam System", "Active Drive Assist 2", "Multimedia Cockpit", "Euro 6d Engine"],
+    description: "Przyszłość Transportu Dalekobieznego. Doświadcz szczytu wydajności i bezpieczeństwa. Actros L na nowo definiuje transport dalekobiezny dzięki rewolucyjnemu systemowi MirrorCam i Multimedialnemu Kokpitowi.",
+    features: ["System MirrorCam", "Active Drive Assist 2", "Multimedialny Kokpit", "Silnik Euro 6d"],
     tag: "Euro 6"
   },
   {
     brand: "Scania",
     model: "R450 (Next Gen)",
     image: photo7,
-    description: "Legendary Reliability Meets Modern Efficiency. Designed for ultimate uptime and profitability. The Next Generation Scania R-series combines a robust 450hp engine with Scania's renowned fuel economy.",
-    features: ["Opticruise Gearbox", "Retarder System", "LED Headlights", "Cabin Air Suspension"],
+    description: "Legendarna Niezawodność Spotyka Nowoczesną Wydajność. Zaprojektowana dla maksymalnej dostępności i rentowności. Scania R-series nowej generacji łączy potężny silnik 450KM z renomową oszczędnością paliwa Scanii.",
+    features: ["Skrzynia Opticruise", "System Retardera", "Oświetlenie LED", "Zawieszenie Kabiny Pneumatyczne"],
     tag: "Next Gen"
   }
 ];
@@ -28,10 +28,10 @@ const trucks = [
   <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
     <div class="max-w-2xl mx-auto text-center mb-16">
       <h2 class="text-4xl font-heading font-extrabold text-base-content sm:text-5xl uppercase tracking-tight">
-        Our <span class="text-primary">Fleet</span>
+        Nasza <span class="text-primary">Flota</span>
       </h2>
       <p class="mt-6 text-base md:text-lg text-base-content/70 leading-relaxed">
-        Drive the best equipment on European roads. Our fleet consists of premium <strong class="text-primary">Mercedes, Volvo, and Scania</strong> trucks no older than <strong class="text-base-content">5 years</strong>, equipped with modern <strong class="text-base-content">curtain-side trailers (tautliners)</strong> and <strong class="text-base-content">tippers</strong>. We guarantee perfect technical condition and full maintenance at company expense.
+        Prowadź najlepszy sprzęt na europejskich drogach. Nasza flota składa się z premiumów <strong class="text-primary">Mercedes, Volvo i Scania</strong> nie starszych niż <strong class="text-base-content">5 lat</strong>, wyposażonych w nowoczesne <strong class="text-base-content">naczepy firankowe (tautlinery)</strong> i <strong class="text-base-content">wywrotki</strong>. Gwarantujemy idealny stan techniczny i pełną obsługę na koszt firmy.
       </p>
     </div>
 
@@ -70,7 +70,7 @@ const trucks = [
             
             <!-- Features List -->
             <div class="mt-auto pt-6 border-t border-base-content/10">
-              <p class="text-xs font-heading font-bold text-base-content/50 uppercase tracking-widest mb-4">Key Features</p>
+              <p class="text-xs font-heading font-bold text-base-content/50 uppercase tracking-widest mb-4">Główne Cechy</p>
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {truck.features.map((feature) => (
                   <div class="flex items-center gap-2">
