@@ -1,6 +1,6 @@
 ---
 // src/components/LeadForm.astro
-const VACANCY_ID = import.meta.env.CRM_VACANCY_ID || '6';
+const VACANCY_ID = import.meta.env.CRM_VACANCY_ID;
 const COMPANY_NAME = import.meta.env.COMPANY_NAME || 'DARTRANS & HENZEL Sp. z o.o.';
 const COMPANY_ADDRESS_STREET = import.meta.env.COMPANY_ADDRESS_STREET || 'ul. Główna 97';
 const COMPANY_ADDRESS_POSTAL = import.meta.env.COMPANY_ADDRESS_POSTAL || '62-007';
@@ -73,6 +73,13 @@ const COMPANY_ADDRESS_CITY = import.meta.env.COMPANY_ADDRESS_CITY || 'Biskupice'
                }
              },
              async submitForm() {
+               // Проверка наличия vacancy_id
+               if (!this.form.vacancy_id) {
+                 this.error = true;
+                 this.errorMessage = 'Błąd konfiguracji: brak ID wakatu. Skontaktuj się z administratorem.';
+                 return;
+               }
+               
                this.loading = true;
                this.error = false;
                this.errorMessage = '';

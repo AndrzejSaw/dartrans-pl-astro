@@ -25,35 +25,26 @@ const FormSchema = z.object({
   whatsapp_phone: z.string()
     .regex(/^\+?[\d\s]{10,20}$/, 'Phone must contain 10-15 digits with optional + prefix and spaces')
     .transform(val => val.replace(/\s/g, '')),
-  citizenship: z.enum([
-    'INDIA', 'NEPAL', 'PHILIPPINES', 'BANGLADESH',
-    'COLOMBIA', 'ZIMBABWE', 'SRI LANKA', 'OTHER'
-  ], { errorMap: () => ({ message: 'Invalid citizenship value' }) }),
+  citizenship: z.enum(['POLAND', 'OTHER'], { 
+    errorMap: () => ({ message: 'Invalid citizenship value' }) 
+  }),
   has_experience: z.enum(['YES', 'NO'], { 
     errorMap: () => ({ message: 'Experience must be YES or NO' }) 
   }),
   code_95: z.enum(['NO', 'YES, POLISH', 'YES, OTHER EU COUNTRY'], { 
     errorMap: () => ({ message: 'Invalid Code 95 value' }) 
   }),
-  license_year: z.enum(['AFTER 09.09.2009', 'BEFORE 09.09.2009'], { 
-    errorMap: () => ({ message: 'Invalid license year value' }) 
-  }),
-  residence_documents: z.enum([
-    'POLISH VISA', 'VISA FROM ANOTHER EU COUNTRY', 
-    'RESIDENCE PERMIT (POLAND)', 'RESIDENCE PERMIT (OTHER EU COUNTRY)', 
-    'EU CITIZENSHIP', 'WAITING FOR RESIDENCE PERMIT (RED STAMP)', 
-    'INVITATION REQUIRED TO APPLY FOR VISA', 'OTHER'
-  ], { errorMap: () => ({ message: 'Invalid residence documents value' }) }),
   start_date: z.string()
     .regex(/^\d{4}-\d{2}-\d{2}$/, 'Date must be in YYYY-MM-DD format'),
   cover_letter: z.string()
     .max(1000, 'Cover letter must not exceed 1000 characters')
-    .optional(),
-  vacancy_id: z.string()
-    .regex(/^\d+$/, 'Vacancy ID must be numeric')
-    .transform(val => parseInt(val, 10)),
+    .optional()
+    .or(z.literal('')),
+  vacancy_id: z.union([
+    z.string().regex(/^\d+$/, 'Vacancy ID must be numeric').transform(val => parseInt(val, 10)),
+    z.number().int().positive('Vacancy ID must be a positive number')
+  ]),
   user_ip: z.string()
-    .ip()
     .optional(),
   // Honeypot field - should be empty
   website: z.string().max(0).optional(),

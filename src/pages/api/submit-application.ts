@@ -53,9 +53,6 @@ const ApplicationSchema = z.object({
   medical_certificate: z.enum(['YES', 'NO'], { 
     errorMap: () => ({ message: 'Medical certificate must be YES or NO' }) 
   }),
-  license_year: z.enum(['AFTER 09.09.2009', 'BEFORE 09.09.2009'], { 
-    errorMap: () => ({ message: 'License year must be AFTER 09.09.2009 or BEFORE 09.09.2009' }) 
-  }),
   work_schedule: z.string()
     .max(100, 'Work schedule field too long'),
   truck_brands: z.string()
