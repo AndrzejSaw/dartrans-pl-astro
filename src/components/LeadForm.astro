@@ -53,11 +53,9 @@ const COMPANY_ADDRESS_CITY = import.meta.env.COMPANY_ADDRESS_CITY || 'Biskupice'
                first_name: '',
                email: '',
                whatsapp_phone: '',
-               citizenship: 'INDIA',
+               citizenship: 'POLSKA',
                has_experience: 'NO',
                code_95: 'NO',
-               license_year: 'BEFORE 09.09.2009',
-               residence_documents: 'INVITATION REQUIRED TO APPLY FOR VISA',
                start_date: '',
                cover_letter: '',
                vacancy_id: '${VACANCY_ID}',
@@ -177,19 +175,13 @@ const COMPANY_ADDRESS_CITY = import.meta.env.COMPANY_ADDRESS_CITY || 'Biskupice'
           <div class="form-control w-full">
             <label class="label" for="lead-citizenship"><span class="label-text font-bold font-heading text-base-content/80">OBYWATELSTWO</span></label>
             <select id="lead-citizenship" name="citizenship" x-model="form.citizenship" class="select select-bordered rounded-xl bg-base-200/50 font-bold w-full">
-              <option value="INDIA">INDIE</option>
-              <option value="NEPAL">NEPAL</option>
-              <option value="PHILIPPINES">FILIPINY</option>
-              <option value="BANGLADESH">BANGLADESZ</option>
-              <option value="COLOMBIA">KOLUMBIA</option>
-              <option value="ZIMBABWE">ZIMBABWE</option>
-              <option value="SRI LANKA">SRI LANKA</option>
+              <option value="POLAND">POLSKA</option>
               <option value="OTHER">INNE</option>
             </select>
           </div>
 
           <div class="form-control w-full">
-            <label class="label" for="lead-experience"><span class="label-text font-bold font-heading text-base-content/80">DOŚWIADCZENIE C+E W EUROPIE?</span></label>
+            <label class="label" for="lead-experience"><span class="label-text font-bold font-heading text-base-content/80">DOŚWIADCZENIE PRACY C+E W UE?</span></label>
             <select id="lead-experience" name="has_experience" x-model="form.has_experience" class="select select-bordered rounded-xl bg-base-200/50 font-bold w-full">
               <option value="NO">NIE</option>
               <option value="YES">TAK</option>
@@ -202,28 +194,6 @@ const COMPANY_ADDRESS_CITY = import.meta.env.COMPANY_ADDRESS_CITY || 'Biskupice'
               <option value="NO">NIE</option>
               <option value="YES, POLISH">TAK, POLSKI</option>
               <option value="YES, OTHER EU COUNTRY">TAK, Z INNEGO KRAJU UE</option>
-            </select>
-          </div>
-
-          <div class="form-control w-full">
-            <label class="label" for="lead-license-year"><span class="label-text font-bold font-heading text-base-content/80">ROK UZYSKANIA PRAWA JAZDY KAT. C</span></label>
-            <select id="lead-license-year" name="license_year" x-model="form.license_year" class="select select-bordered rounded-xl bg-base-200/50 font-bold w-full">
-              <option value="AFTER 09.09.2009">PO 09.09.2009</option>
-              <option value="BEFORE 09.09.2009">PRZED 09.09.2009</option>
-            </select>
-          </div>
-
-          <div class="form-control w-full">
-            <label class="label" for="lead-residence"><span class="label-text font-bold font-heading text-base-content/80">DOKUMENTY POBYTOWE</span></label>
-            <select id="lead-residence" name="residence_documents" x-model="form.residence_documents" class="select select-bordered rounded-xl bg-base-200/50 font-bold w-full">
-              <option value="POLISH VISA">WIZA POLSKA</option>
-              <option value="VISA FROM ANOTHER EU COUNTRY">WIZA Z INNEGO KRAJU UE</option>
-              <option value="RESIDENCE PERMIT (POLAND)">KARTA POBYTU (POLSKA)</option>
-              <option value="RESIDENCE PERMIT (OTHER EU COUNTRY)">KARTA POBYTU (INNY KRAJ UE)</option>
-              <option value="EU CITIZENSHIP">OBYWATELSTWO UE</option>
-              <option value="WAITING FOR RESIDENCE PERMIT (RED STAMP)">OCZEKIWANIE NA KARTĘ POBYTU (CZERWONY STEMPEL)</option>
-              <option value="INVITATION REQUIRED TO APPLY FOR VISA">POTRZEBNE ZAPROSZENIE DO WIZY</option>
-              <option value="OTHER">INNE</option>
             </select>
           </div>
 
