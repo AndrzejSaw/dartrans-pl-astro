@@ -14,26 +14,20 @@ const sortedFaqs = allFaqs.sort((a, b) => a.data.order - b.data.order);
       </h2>
     </div>
 
-    <div class="max-w-3xl mx-auto">
-      <div class="hs-accordion-group">
+    <div class="max-w-3xl mx-auto space-y-4">
         
-        {sortedFaqs.map(async (faq) => {
+        {sortedFaqs.map(async (faq, index) => {
           // 2. ИСПРАВЛЕНИЕ: Используем функцию render(faq) вместо faq.render()
           const { Content } = await render(faq);
           
           return (
-            <div class="hs-accordion bg-base-100 border border-transparent rounded-2xl p-6 mb-4 transition-all duration-300 hs-accordion-active:bg-base-100 hs-accordion-active:border-base-300" id={`hs-basic-heading-${faq.id}`}>
-              <button class="hs-accordion-toggle group inline-flex items-center gap-x-3 w-full font-heading font-bold text-start text-base-content hover:text-primary focus:outline-none transition" 
-                      aria-expanded="false"
-                      aria-controls={`hs-basic-collapse-${faq.id}`}>
-                <svg class="hs-accordion-active:hidden block size-5 text-base-content/70 group-hover:text-primary" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
-                <svg class="hs-accordion-active:block hidden size-5 text-primary" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>
-                
+            <div class="collapse collapse-plus bg-base-100 border border-base-200 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+              <input type="radio" name="faq-accordion" id={`faq-${faq.id}`} checked={index === 0} />
+              <div class="collapse-title text-xl font-heading font-bold text-base-content pr-12">
                 {faq.data.question}
-              </button>
-              
-              <div id={`hs-basic-collapse-${faq.id}`} class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" role="region" aria-labelledby={`hs-basic-heading-${faq.id}`}>
-                <div class="text-base-content/70 mt-4 leading-relaxed font-sans">
+              </div>
+              <div class="collapse-content">
+                <div class="text-base-content/70 leading-relaxed font-sans pt-2">
                   <Content />
                 </div>
               </div>
@@ -41,7 +35,6 @@ const sortedFaqs = allFaqs.sort((a, b) => a.data.order - b.data.order);
           );
         })}
 
-      </div>
     </div>
   </div>
 </section>
