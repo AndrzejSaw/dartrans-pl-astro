@@ -91,14 +91,9 @@ const COMPANY_ADDRESS_CITY = import.meta.env.COMPANY_ADDRESS_CITY || "Warszawa";
        }
      }`}
 >
-  <div class="text-center mb-10">
-    <h2 class="text-3xl md:text-4xl font-heading font-black text-base-content uppercase tracking-tight mb-4">Pełna Aplikacja</h2>
-    <p class="text-base-content/60 font-medium font-sans">Wypełnij formularz, aby sfinalizować swoją kandydaturę.</p>
-  </div>
-
   <form @submit.prevent="submitApplication" x-show="!success" x-transition.opacity class="space-y-6">
     
-    <div x-show="error" class="alert alert-error rounded-xl text-sm font-bold shadow-lg">
+    <div x-show="error" x-transition class="alert alert-error rounded-xl text-sm font-bold shadow-lg" style="display: none;">
       <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
       <span x-text="errorMessage"></span>
     </div>
