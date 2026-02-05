@@ -1,0 +1,14 @@
+---
+import { getCollection } from 'astro:content';
+import VacancyCard from './VacancyCard.astro';
+
+// Fetch and sort vacancy entries
+const vacancyEntries = await getCollection('vacancy');
+const sortedVacancies = vacancyEntries.sort((a, b) => a.data.order - b.data.order);
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+  {sortedVacancies.map((entry) => (
+    <VacancyCard entry={entry} />
+  ))}
+</div>

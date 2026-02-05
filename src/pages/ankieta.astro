@@ -1,6 +1,10 @@
 ---
 export const prerender = false;
 import MainLayout from '../layouts/MainLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ApplicationForm from '../components/ApplicationForm.astro';
+import VacancyGrid from '../components/vacancy/VacancyGrid.astro';
 
 const COMPANY_NAME = import.meta.env.COMPANY_NAME || 'DARTRANS & HENZEL Sp. z o.o.';
 const COMPANY_ADDRESS_STREET = import.meta.env.COMPANY_ADDRESS_STREET || 'ul. Główna 97';
@@ -18,510 +22,69 @@ if (!token) {
 <MainLayout title={`Ankieta Kierowcy | ${SITE_NAME}`}>
   <meta name="robots" content="noindex, nofollow" slot="head" />
 
-  <!-- Hero Section -->
-  <section class="relative bg-neutral pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent -z-10"></div>
-    <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h1 class="text-4xl md:text-5xl lg:text-6xl font-heading font-black text-white uppercase tracking-tighter mb-6">
-        Ankieta <span class="text-primary">Kierowcy</span>
-      </h1>
-      <p class="text-lg md:text-xl font-sans text-white/70 max-w-2xl mx-auto">
-        Prosimy zapoznać się ze szczegółową ofertą pracy i wypełnić pełny formularz aplikacyjny poniżej.
-      </p>
-    </div>
-  </section>
+  <Header />
 
-  <!-- Job Offer Section -->
-  <section class="py-16 bg-base-100">
-    <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-5 mb-16 auto-rows-fr">
-        
-        <!-- Schedule & Payment -->
-        <div class="card bg-base-200/50 border border-base-content/5 shadow-xl rounded-2xl p-7 hover:shadow-2xl transition-all duration-300 min-h-[280px] flex flex-col">
-          <h3 class="font-heading font-bold text-2xl text-primary mb-4 flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-            Grafik i Wynagrodzenie
-          </h3>
-          <ul class="space-y-3 font-sans text-base-content/80 text-base leading-relaxed">
-            <li><span class="font-bold text-base-content">Grafik:</span> 4/1, 5/1, 6/2, lub 8/4. Możliwe indywidualne ustalenia.</li>
-            <li><span class="font-bold text-base-content">Wynagrodzenie:</span> Od 380 zł/dzień netto (ok. €89/dzień). Od €2,600 netto/miesiąc.</li>
-            <li><span class="font-bold text-base-content">Wypłata:</span> Do 10-go każdego miesiąca. Zaliczka 600 zł.</li>
-            <li><span class="font-bold text-base-content">Umowa:</span> Umowa o pracę.</li>
-          </ul>
-        </div>
-
-        <!-- Bonuses -->
-        <div class="card bg-base-200/50 border border-base-content/5 shadow-xl rounded-2xl p-7 hover:shadow-2xl transition-all duration-300 min-h-[280px] flex flex-col">
-          <h3 class="font-heading font-bold text-2xl text-primary mb-4 flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-            Bonusy ECO
-          </h3>
-          <ul class="space-y-3 font-sans text-base-content/80 text-base leading-relaxed">
-            <li class="flex justify-between"><span>1. Miejsce:</span> <span class="font-bold text-green-600">700 zł</span></li>
-            <li class="flex justify-between"><span>2. Miejsce:</span> <span class="font-bold text-green-600">500 zł</span></li>
-            <li class="flex justify-between"><span>3. Miejsce:</span> <span class="font-bold text-green-600">300 zł</span></li>
-            <li class="text-sm italic pt-2">Miesięczny ranking za ekonomiczną jazdę. Brak kar za przekroczenie.</li>
-          </ul>
-        </div>
-
-        <!-- Working Conditions -->
-        <div class="card bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-500/30 shadow-2xl rounded-2xl p-7 hover:shadow-[0_20px_50px_rgba(34,197,94,0.3)] transition-all duration-300 md:col-span-2">
-          <h3 class="font-heading font-bold text-2xl text-green-700 mb-4 flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-            Przyjazna Praca dla Kierowcy
-          </h3>
-          <p class="font-sans text-base-content/70 text-base mb-4 font-bold leading-relaxed">
-            Rozumiemy potrzeby kierowców. Dlatego wyeliminowaliśmy najcięższe elementy pracy:
-          </p>
-          <ul class="space-y-2.5 font-sans text-base-content/80 text-base mb-4 leading-relaxed">
-            <li class="flex items-center gap-2.5 p-2 bg-white/70 rounded-lg">
-              <svg class="w-5 h-5 text-green-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-              <span><span class="font-bold text-green-700">Podwójna załoga:</span> <span class="font-black text-base-content">NIE</span> — twój własny samochód, twój grafik</span>
-            </li>
-            <li class="flex items-center gap-2.5 p-2 bg-white/70 rounded-lg">
-              <svg class="w-5 h-5 text-green-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-              <span><span class="font-bold text-green-700">Jazda nocna:</span> <span class="font-black text-base-content">NIE</span> — bezpieczne, wygodne godziny jazdy</span>
-            </li>
-            <li class="flex items-center gap-2.5 p-2 bg-white/70 rounded-lg">
-              <svg class="w-5 h-5 text-green-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-              <span><span class="font-bold text-green-700">Wymiana palet:</span> <span class="font-black text-base-content">NIE</span> — prowadź, a nie rozładowuj</span>
-            </li>
-            <li class="flex items-center gap-2.5 p-2 bg-white/70 rounded-lg">
-              <svg class="w-5 h-5 text-green-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-              <span><span class="font-bold text-green-700">Przestawianie naczep:</span> <span class="font-black text-base-content">NIE</span> — stałe trasy</span>
-            </li>
-            <li class="flex items-center gap-2.5 p-2 bg-white/70 rounded-lg">
-              <svg class="w-5 h-5 text-green-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-              <span><span class="font-bold text-green-700">Naprawy przez kierowcę:</span> <span class="font-black text-base-content">NIE</span> — pełne wsparcie serwisu</span>
-            </li>
-          </ul>
-          <div class="bg-primary/10 rounded-lg p-3 border border-primary/20">
-            <p class="text-xs text-base-content font-bold">
-              ⭐ Twoje zadanie to <span class="text-primary">bezpieczna jazda i terminowa dostawa</span> — resztą zajmujemy się my!
-            </p>
-          </div>
-        </div>
-
-        <!-- Fleet Details -->
-        <div class="card bg-base-200/50 border border-base-content/5 shadow-xl rounded-2xl p-7 hover:shadow-2xl transition-all duration-300 min-h-[420px] flex flex-col">
-          <h3 class="font-heading font-bold text-2xl text-primary mb-4 flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
-            Nowoczesna Flota
-          </h3>
-          
-          <div class="mb-4">
-            <p class="font-sans text-base-content/80 text-base mb-3 leading-relaxed">
-              <span class="font-bold text-base-content">Samochody:</span> Najnowsze modele <span class="font-bold text-primary">2020-2023</span>, Euro 6.
-            </p>
-            <div class="grid grid-cols-2 gap-3 mb-4">
-              <div class="bg-white p-3 rounded-lg border border-base-content/10 hover:border-primary/30 transition-colors group">
-                <div class="flex items-center gap-2 mb-1">
-                  <div class="w-8 h-8 bg-gradient-to-br from-gray-700 to-gray-900 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M23 12l-2.44-2.79.34-3.69-3.61-.82-1.89-3.2L12 2.96 8.6 1.5 6.71 4.7 3.1 5.52l.34 3.69L1 12l2.44 2.79-.34 3.69 3.61.82 1.89 3.2L12 21.04l3.4 1.46 1.89-3.2 3.61-.82-.34-3.69L23 12z"/></svg>
-                  </div>
-                  <span class="font-bold text-sm text-base-content">Mercedes</span>
-                </div>
-                <p class="text-xs text-base-content/60 leading-relaxed">Actros MP5 L</p>
-              </div>
-              <div class="bg-white p-3 rounded-lg border border-base-content/10 hover:border-primary/30 transition-colors group">
-                <div class="flex items-center gap-2 mb-1">
-                  <div class="w-8 h-8 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm0 2.18l6 2.25v4.66c0 4.16-2.78 8.01-6 8.89-3.22-.88-6-4.73-6-8.89V6.43l6-2.25z"/></svg>
-                  </div>
-                  <span class="font-bold text-sm text-base-content">Scania</span>
-                </div>
-                <p class="text-xs text-base-content/60">R450 Next Gen</p>
-              </div>
-              <div class="bg-white p-3 rounded-lg border border-base-content/10 hover:border-primary/30 transition-colors group">
-                <div class="flex items-center gap-2 mb-1">
-                  <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                  </div>
-                  <span class="font-bold text-sm text-base-content">Volvo</span>
-                </div>
-                <p class="text-xs text-base-content/60">FH with I-Shift</p>
-              </div>
-              <div class="bg-white p-3 rounded-lg border border-base-content/10 hover:border-primary/30 transition-colors group">
-                <div class="flex items-center gap-2 mb-1">
-                  <div class="w-8 h-8 bg-gradient-to-br from-red-600 to-red-800 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
-                  </div>
-                  <span class="font-bold text-sm text-base-content">MAN</span>
-                </div>
-                <p class="text-xs text-base-content/60">TGX series</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="divider divider-start text-xs font-bold text-base-content/40">NACZEPY</div>
-          
-          <div class="grid grid-cols-3 gap-2">
-            <div class="badge badge-outline badge-lg font-bold">Firanka</div>
-            <div class="badge badge-outline badge-lg font-bold">MEGA</div>
-            <div class="badge badge-outline badge-lg font-bold">Wywrotka</div>
-          </div>
-          
-          <div class="mt-4 bg-primary/5 rounded-lg p-3 border border-primary/10">
-            <p class="text-xs text-base-content/70 leading-relaxed">
-              <span class="font-bold text-primary">Wszystkie ciężarówki wyposażone w:</span> Webasto, lodówki, falowniki, nawigację GPS i pełen komfort. Własny serwis zapewnia <span class="font-bold">wsparcie techniczne 24/7</span>.
-            </p>
-          </div>
-        </div>
-
-        <!-- Base & Routes -->
-        <div class="card bg-base-200/50 border border-base-content/5 shadow-xl rounded-2xl p-7 hover:shadow-2xl transition-all duration-300 min-h-[280px] flex flex-col">
-          <h3 class="font-heading font-bold text-2xl text-primary mb-4 flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-            Baza i Trasy
-          </h3>
-          <ul class="space-y-3 font-sans text-base-content/80 text-base leading-relaxed">
-            <li><span class="font-bold text-base-content">Baza:</span> {COMPANY_ADDRESS_POSTAL} {COMPANY_ADDRESS_CITY}, {COMPANY_ADDRESS_STREET}.</li>
-            <li><span class="font-bold text-base-content">Trasy:</span> Cała UE (Benelux, DE, FR, CH, IT, ES, PT).</li>
-            <li><span class="font-bold text-base-content">Drogi płatne:</span> Autostrady (Toll Collect, Box E100).</li>
-            <li>Bezpłatny parking i hostel na bazie.</li>
-          </ul>
-        </div>
-
-        <!-- Countries Coverage -->
-        <div class="card bg-gradient-to-br from-primary/5 to-primary/10 border-2 border-primary/20 shadow-2xl rounded-2xl p-7 hover:shadow-[0_20px_50px_rgba(59,130,246,0.3)] transition-all duration-300 min-h-[420px] flex flex-col">
-          <h3 class="font-heading font-bold text-2xl text-primary mb-4 flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-            Nasze Trasy Europejskie
-          </h3>
-          <p class="font-sans text-base-content/70 text-base mb-4 leading-relaxed">
-            Obsługujemy stałe, sprawdzone trasy w 9 krajach UE z potwierdzonymi partnerstwami:
-          </p>
-          <div class="grid grid-cols-3 gap-2 mb-3">
-            <div class="flex items-center gap-2 px-2.5 py-2 bg-white rounded-lg border border-primary/10 hover:border-primary/30 transition-colors group">
-              <svg class="w-6 h-6 shrink-0 group-hover:scale-110 transition-transform" viewBox="0 0 640 480"><path fill="#000" d="M0 0h213.3v480H0z"/><path fill="#ffd90c" d="M213.3 0h213.4v480H213.3z"/><path fill="#f31830" d="M426.7 0H640v480H426.7z"/></svg>
-              <span class="text-xs font-bold text-base-content">Belgia</span>
-            </div>
-            <div class="flex items-center gap-2 px-2.5 py-2 bg-white rounded-lg border border-primary/10 hover:border-primary/30 transition-colors group">
-              <svg class="w-6 h-6 shrink-0 group-hover:scale-110 transition-transform" viewBox="0 0 640 480"><path fill="#21468b" d="M0 0h640v160H0z"/><path fill="#fff" d="M0 160h640v160H0z"/><path fill="#ae1c28" d="M0 320h640v160H0z"/></svg>
-              <span class="text-xs font-bold text-base-content">Holandia</span>
-            </div>
-            <div class="flex items-center gap-2 px-2.5 py-2 bg-white rounded-lg border border-primary/10 hover:border-primary/30 transition-colors group">
-              <svg class="w-6 h-6 shrink-0 group-hover:scale-110 transition-transform" viewBox="0 0 640 480"><path fill="#00a1de" d="M0 0h640v160H0z"/><path fill="#fff" d="M0 160h640v160H0z"/><path fill="#ed2939" d="M0 320h640v160H0z"/></svg>
-              <span class="text-xs font-bold text-base-content">Luksemburg</span>
-            </div>
-            <div class="flex items-center gap-2 px-2.5 py-2 bg-white rounded-lg border border-primary/10 hover:border-primary/30 transition-colors group">
-              <svg class="w-6 h-6 shrink-0 group-hover:scale-110 transition-transform" viewBox="0 0 640 480"><path fill="#000" d="M0 0h640v160H0z"/><path fill="#d00" d="M0 160h640v160H0z"/><path fill="#ffce00" d="M0 320h640v160H0z"/></svg>
-              <span class="text-xs font-bold text-base-content">Niemcy</span>
-            </div>
-            <div class="flex items-center gap-2 px-2.5 py-2 bg-white rounded-lg border border-primary/10 hover:border-primary/30 transition-colors group">
-              <svg class="w-6 h-6 shrink-0 group-hover:scale-110 transition-transform" viewBox="0 0 640 480"><path fill="#002654" d="M0 0h213.3v480H0z"/><path fill="#fff" d="M213.3 0h213.4v480H213.3z"/><path fill="#ed2939" d="M426.7 0H640v480H426.7z"/></svg>
-              <span class="text-xs font-bold text-base-content">Francja</span>
-            </div>
-            <div class="flex items-center gap-2 px-2.5 py-2 bg-white rounded-lg border border-primary/10 hover:border-primary/30 transition-colors group">
-              <svg class="w-6 h-6 shrink-0 group-hover:scale-110 transition-transform" viewBox="0 0 640 480"><path fill="#d52b1e" d="M0 0h640v480H0z"/><path fill="#fff" d="M160 0h320v480H160z"/></svg>
-              <span class="text-xs font-bold text-base-content">Szwajcaria</span>
-            </div>
-            <div class="flex items-center gap-2 px-2.5 py-2 bg-white rounded-lg border border-primary/10 hover:border-primary/30 transition-colors group">
-              <svg class="w-6 h-6 shrink-0 group-hover:scale-110 transition-transform" viewBox="0 0 640 480"><path fill="#009246" d="M0 0h213.3v480H0z"/><path fill="#fff" d="M213.3 0h426.7v480H213.3z"/><path fill="#ce2b37" d="M426.7 0H640v480H426.7z"/></svg>
-              <span class="text-xs font-bold text-base-content">Włochy</span>
-            </div>
-            <div class="flex items-center gap-2 px-2.5 py-2 bg-white rounded-lg border border-primary/10 hover:border-primary/30 transition-colors group">
-              <svg class="w-6 h-6 shrink-0 group-hover:scale-110 transition-transform" viewBox="0 0 640 480"><path fill="#c60b1e" d="M0 0h640v160H0z"/><path fill="#ffc400" d="M0 160h640v160H0z"/><path fill="#c60b1e" d="M0 320h640v160H0z"/></svg>
-              <span class="text-xs font-bold text-base-content">Hiszpania</span>
-            </div>
-            <div class="flex items-center gap-2 px-2.5 py-2 bg-white rounded-lg border border-primary/10 hover:border-primary/30 transition-colors group">
-              <svg class="w-6 h-6 shrink-0 group-hover:scale-110 transition-transform" viewBox="0 0 640 480"><path fill="#060" d="M0 0h640v240H0z"/><path fill="#f00" d="M0 240h640v240H0z"/></svg>
-              <span class="text-xs font-bold text-base-content">Portugalia</span>
-            </div>
-          </div>
-          <div class="bg-white/50 rounded-lg p-3 border border-primary/10">
-            <p class="text-xs text-base-content/70 leading-relaxed">
-              <span class="font-bold text-primary">Główny nacisk:</span> Benelux (BE, NL, LU), Niemcy, Francja — stabilna praca z przewidywalnymi grafikami, bez losowych tras.
-            </p>
-          </div>
-        </div>
-
-        <!-- Support -->
-        <div class="card bg-base-200/50 border border-base-content/5 shadow-xl rounded-2xl p-7 hover:shadow-2xl transition-all duration-300 min-h-[280px] flex flex-col">
-          <h3 class="font-heading font-bold text-2xl text-primary mb-4 flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
-            Wsparcie
-          </h3>
-          <p class="font-sans text-base-content/80 text-base mb-3 leading-relaxed">
-            Dyspozytorzy mówią: rosyjski, ukraiński, polski, angielski, niemiecki.
-          </p>
-          <div class="divider my-2"></div>
-          <p class="font-sans text-base-content/80 text-base leading-relaxed">
-            <span class="font-bold">Odpoczynek:</span> 45h/24h w kabinie.
-            <br/>Wypłata za weekendy w trasie — <span class="font-bold text-green-600">TAK</span>.
-            <br/>Rekompensata za wymianę opon — 400 zł.
-          </p>
-        </div>
-
-      </div>
-
-      <!-- Why Choose Dartrans Section -->
-      <div class="max-w-4xl mx-auto text-center mt-16 mb-12">
-        <div class="inline-block px-6 py-2 bg-primary/10 rounded-full mb-4">
-          <span class="text-primary font-heading font-bold uppercase text-xs tracking-[0.2em]">Gotowy dołączyć?</span>
-        </div>
-        <h2 class="text-3xl md:text-4xl font-heading font-black text-base-content uppercase tracking-tight mb-4">
-          Wypełnij Swój <span class="text-primary">Wniosek</span>
-        </h2>
-        <p class="text-base-content/60 text-sm max-w-2xl mx-auto leading-relaxed">
-          Wypełnij szczegółowy formularz poniżej. Nasz zespół rekrutacyjny przeanalizuje Twoją aplikację w ciągu <span class="font-bold text-primary">24-48 godzin</span> i skontaktuje się z Tobą przez WhatsApp lub email.
+  <main>
+    <!-- Hero Section -->
+    <section class="relative bg-neutral pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent -z-10"></div>
+      <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-heading font-black text-white uppercase tracking-tighter mb-6">
+          Ankieta <span class="text-primary">Kierowcy</span>
+        </h1>
+        <p class="text-lg sm:text-xl lg:text-2xl font-sans text-white/70 max-w-2xl mx-auto">
+          Prosimy zapoznać się ze szczegółową ofertą pracy i wypełnić pełny formularz aplikacyjny poniżej.
         </p>
       </div>
+    </section>
 
-            <!-- Application Form -->
-            <div id="application-form" class="max-w-4xl mx-auto bg-base-100 rounded-[2.5rem] p-6 sm:p-10 md:p-14 shadow-2xl shadow-primary/5 border border-base-content/5"
-                 x-data={`{ 
-                   loading: false, 
-                   success: false,
-                   error: false,
-                   errorMessage: '',
-                   token: '${token}',
-                   form: {
-                     token: '',
-                     first_name: '',
-                     last_name: '',
-                     email: '',
-                     phone: '',
-                     viber_phone: '',
-                     age: null,
-                     ce_experience_years: '',
-                     pesel_status: 'NO',
-                     europe_experience_years: '',
-                     work_schedule: '4/1: 4 weeks work, 1 week off',
-                     truck_brands: '',
-                     medical_certificate: 'NO',
-                     trailer_types: '',
-                     countries_driven: '',
-                     last_employer: '',
-                     acceptance: false,
-                     website: '',
-                     honeypot: ''
-                   },
-                   init() {
-                     // Token passed from server-side frontmatter
-                     this.form.token = this.token;
-                   },
-                   async submitApplication() {
-                     if(!this.form.acceptance) {
-                       this.error = true;
-                       this.errorMessage = 'Musisz wyrazić zgodę na przetwarzanie danych.';
-                       return;
-                     }
-
-                     this.loading = true;
-                     this.error = false;
-                     this.errorMessage = '';
-
-                     try {
-                       // Очищаем номера телефонов от лишних пробелов и конвертируем age в число
-                       const cleanedForm = {
-                         ...this.form,
-                         phone: this.form.phone.replace(/\s/g, ''),
-                         viber_phone: this.form.viber_phone ? this.form.viber_phone.replace(/\s/g, '') : '',
-                         age: this.form.age ? parseInt(this.form.age, 10) : null
-                       };
-
-                       const response = await fetch('/api/submit-application', {
-                         method: 'POST',
-                         headers: { 'Content-Type': 'application/json' },
-                         body: JSON.stringify(cleanedForm)
-                       });
-
-                       if (response.ok) {
-                         this.success = true;
-                         this.$nextTick(() => {
-                           this.$el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                         });
-                       } else {
-                         const errorData = await response.json();
-                         this.error = true;
-                         this.errorMessage = errorData.message || 'Błąd serwera. Sprawdź poprawność danych.';
-                         console.error('Application error:', errorData);
-                       }
-                     } catch (e) {
-                       this.error = true;
-                       this.errorMessage = 'Błąd połączenia. Sprawdź swoje połączenie internetowe.';
-                     } finally {
-                       this.loading = false;
-                     }
-                   }
-                 }`}
-            >
-        <div class="text-center mb-10">
-          <h2 class="text-3xl md:text-4xl font-heading font-black text-base-content uppercase tracking-tight mb-4">Pełna Aplikacja</h2>
-          <p class="text-base-content/60 font-medium font-sans">Wypełnij formularz, aby sfinalizować swoją kandydaturę.</p>
+    <!-- Vacancy Details Section -->
+    <section class="py-24 md:py-32 bg-base-100 reveal">
+      <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Section Title -->
+        <div class="max-w-2xl mx-auto text-center mb-16">
+          <div class="inline-block px-6 py-2 bg-primary/10 rounded-full mb-4">
+            <span class="text-primary font-heading font-bold uppercase text-xs tracking-[0.2em]">Oferta</span>
+          </div>
+          <h2 class="text-4xl font-heading font-extrabold text-base-content sm:text-5xl uppercase tracking-tight">
+            Warunki <span class="text-primary">Zatrudnienia</span>
+          </h2>
+          <p class="mt-6 text-base md:text-lg font-sans text-base-content/60 leading-relaxed">
+            Sprawdź szczegóły naszej oferty pracy dla kierowców C+E
+          </p>
         </div>
 
-        <form @submit.prevent="submitApplication" x-show="!success" x-transition.opacity class="space-y-6">
-          
-          <div x-show="error" class="alert alert-error rounded-xl text-sm font-bold shadow-lg">
-            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-            <span x-text="errorMessage"></span>
-          </div>
-
-          <!-- Honeypot fields for bot detection (hidden from users) -->
-          <input 
-            type="text" 
-            name="website" 
-            x-model="form.website"
-            style="position:absolute;left:-9999px;width:1px;height:1px;" 
-            tabindex="-1" 
-            autocomplete="off"
-            aria-hidden="true"
-          />
-          <input 
-            type="text" 
-            name="honeypot" 
-            x-model="form.honeypot"
-            style="position:absolute;left:-9999px;width:1px;height:1px;" 
-            tabindex="-1" 
-            autocomplete="off"
-            aria-hidden="true"
-          />
-
-          <input type="hidden" x-model="form.token" />
-
-          <!-- Personal Data -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="form-control w-full">
-              <label class="label" for="ankieta-first-name"><span class="label-text font-bold font-heading text-base-content/80">TWOJE IMIĘ * (LITERY ŁACIŃSKIE)</span></label>
-              <input type="text" id="ankieta-first-name" name="first_name" x-model="form.first_name" placeholder="Jan" class="input input-bordered rounded-xl bg-base-200/50 focus:bg-base-100 transition-all h-12 w-full" aria-required="true" required />
-            </div>
-            <div class="form-control w-full">
-              <label class="label" for="ankieta-last-name"><span class="label-text font-bold font-heading text-base-content/80">TWOJE NAZWISKO * (LITERY ŁACIŃSKIE)</span></label>
-              <input type="text" id="ankieta-last-name" name="last_name" x-model="form.last_name" placeholder="Kowalski" class="input input-bordered rounded-xl bg-base-200/50 focus:bg-base-100 transition-all h-12 w-full" aria-required="true" required />
-            </div>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="form-control w-full">
-              <label class="label" for="ankieta-email"><span class="label-text font-bold font-heading text-base-content/80">TWÓJ EMAIL *</span></label>
-              <input type="email" id="ankieta-email" name="email" x-model="form.email" placeholder="przyklad@mail.com" class="input input-bordered rounded-xl bg-base-200/50 focus:bg-base-100 transition-all h-12 w-full" aria-required="true" required />
-            </div>
-            <div class="form-control w-full">
-              <label class="label" for="ankieta-age"><span class="label-text font-bold font-heading text-base-content/80">TWÓJ WIEK *</span></label>
-              <input type="number" id="ankieta-age" name="age" x-model.number="form.age" placeholder="35" min="21" max="70" class="input input-bordered rounded-xl bg-base-200/50 focus:bg-base-100 transition-all h-12 w-full" aria-required="true" required />
-            </div>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="form-control w-full">
-              <label class="label" for="ankieta-phone"><span class="label-text font-bold font-heading text-base-content/80">TELEFON Z KODEM KRAJU *</span></label>
-              <input type="tel" id="ankieta-phone" name="phone" x-model="form.phone" placeholder="+48 000 000 000" class="input input-bordered rounded-xl bg-base-200/50 focus:bg-base-100 transition-all h-12 w-full" aria-required="true" required />
-            </div>
-            <div class="form-control w-full">
-              <label class="label" for="ankieta-viber"><span class="label-text font-bold font-heading text-base-content/80">TWÓJ NUMER VIBER</span></label>
-              <input type="tel" id="ankieta-viber" name="viber_phone" x-model="form.viber_phone" placeholder="+48 000 000 000" class="input input-bordered rounded-xl bg-base-200/50 focus:bg-base-100 transition-all h-12 w-full" />
-            </div>
-          </div>
-
-          <!-- Professional Data -->
-          <div class="divider text-primary font-heading font-bold text-sm tracking-widest uppercase py-4">Doświadczenie Zawodowe</div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="form-control w-full">
-              <label class="label" for="ankieta-ce-exp"><span class="label-text font-bold font-heading text-base-content/80">DOŚWIADCZENIE C+E (LATA) *</span></label>
-              <input type="text" id="ankieta-ce-exp" name="ce_experience_years" x-model="form.ce_experience_years" class="input input-bordered rounded-xl bg-base-200/50 focus:bg-base-100 transition-all h-12 w-full" aria-required="true" required />
-            </div>
-            <div class="form-control w-full">
-              <label class="label" for="ankieta-europe-exp"><span class="label-text font-bold font-heading text-base-content/80">DOŚWIADCZENIE W EUROPIE (LATA) *</span></label>
-              <input type="text" id="ankieta-europe-exp" name="europe_experience_years" x-model="form.europe_experience_years" class="input input-bordered rounded-xl bg-base-200/50 focus:bg-base-100 transition-all h-12 w-full" aria-required="true" required />
-            </div>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="form-control w-full">
-              <label class="label" for="ankieta-pesel"><span class="label-text font-bold font-heading text-base-content/80">CZY POSIADASZ PESEL? *</span></label>
-              <select id="ankieta-pesel" name="pesel_status" x-model="form.pesel_status" class="select select-bordered rounded-xl bg-base-200/50 font-bold w-full" aria-required="true">
-                <option value="NO">NIE</option>
-                <option value="YES">TAK</option>
-              </select>
-            </div>
-            <div class="form-control w-full">
-              <label class="label" for="ankieta-medical"><span class="label-text font-bold font-heading text-base-content/80">ZAŚWIADCZENIE LEKARSKIE / PSYCHOTESTY? *</span></label>
-              <select id="ankieta-medical" name="medical_certificate" x-model="form.medical_certificate" class="select select-bordered rounded-xl bg-base-200/50 font-bold w-full" aria-required="true">
-                <option value="NO">NIE</option>
-                <option value="YES">TAK</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-control w-full">
-            <label class="label" for="ankieta-schedule"><span class="label-text font-bold font-heading text-base-content/80">GRAFIK PRACY *</span></label>
-            <select id="ankieta-schedule" name="work_schedule" x-model="form.work_schedule" class="select select-bordered rounded-xl bg-base-200/50 font-bold w-full" aria-required="true">
-              <option value="4/1: 4 weeks work, 1 week off">4/1: 4 tygodnie pracy, 1 tydzień urlopu</option>
-              <option value="5/1: 5 weeks work, 1 week off">5/1: 5 tygodni pracy, 1 tydzień urlopu</option>
-              <option value="6/2: 6 weeks work, 2 weeks off">6/2: 6 tygodni pracy, 2 tygodnie urlopu</option>
-              <option value="8/4: 8 weeks work, 4 weeks off">8/4: 8 tygodni pracy, 4 tygodnie urlopu</option>
-              <option value="Work in Poland, 5-6 days per week">Praca w Polsce, 5-6 dni w tygodniu</option>
-            </select>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="form-control w-full">
-              <label class="label" for="ankieta-trucks"><span class="label-text font-bold font-heading text-base-content/80">JAKIMI MARKAMI CIĘŻARÓWEK PROWADZIŁEŚ? *</span></label>
-              <input type="text" id="ankieta-trucks" name="truck_brands" x-model="form.truck_brands" placeholder="Scania, Volvo..." class="input input-bordered rounded-xl bg-base-200/50 focus:bg-base-100 transition-all h-12 w-full" aria-required="true" required />
-            </div>
-            <div class="form-control w-full">
-              <label class="label" for="ankieta-trailers"><span class="label-text font-bold font-heading text-base-content/80">TYPY NACZEP *</span></label>
-              <input type="text" id="ankieta-trailers" name="trailer_types" x-model="form.trailer_types" placeholder="Firanka, Chłodnia..." class="input input-bordered rounded-xl bg-base-200/50 focus:bg-base-100 transition-all h-12 w-full" aria-required="true" required />
-            </div>
-          </div>
-
-          <div class="form-control w-full">
-            <label class="label" for="ankieta-countries"><span class="label-text font-bold font-heading text-base-content/80">COUNTRIES YOU'VE DRIVEN *</span></label>
-            <input type="text" id="ankieta-countries" name="countries_driven" x-model="form.countries_driven" placeholder="DE, FR, ES..." class="input input-bordered rounded-xl bg-base-200/50 focus:bg-base-100 transition-all h-12 w-full" aria-required="true" required />
-          </div>
-
-          <div class="form-control w-full">
-            <label class="label" for="ankieta-employer"><span class="label-text font-bold font-heading text-base-content/80">OSTATNI PRACODAWCA</span></label>
-            <input type="text" id="ankieta-employer" name="last_employer" x-model="form.last_employer" class="input input-bordered rounded-xl bg-base-200/50 focus:bg-base-100 transition-all h-12 w-full" />
-          </div>
-
-          <div class="form-control pt-4">
-            <label class="label cursor-pointer justify-start gap-3 items-start" for="ankieta-acceptance">
-              <input type="checkbox" id="ankieta-acceptance" x-model="form.acceptance" required class="checkbox checkbox-primary checkbox-sm mt-1" aria-required="true" />
-              <span class="label-text text-xs text-base-content/70 leading-relaxed text-justify">
-                Wyrażam zgodę na przetwarzanie moich danych osobowych przez {COMPANY_NAME}, z siedzibą przy {COMPANY_ADDRESS_STREET}, {COMPANY_ADDRESS_POSTAL} {COMPANY_ADDRESS_CITY}, w celu rekrutacji na stanowisko, o które się ubiegam.
-              </span>
-            </label>
-          </div>
-
-          <button type="submit" 
-                  class="btn btn-primary btn-block text-lg font-heading font-black h-14 rounded-2xl shadow-xl shadow-primary/20 border-none transition-all hover:scale-[1.01] active:scale-95 mt-4" 
-                  :disabled="loading"
-                  data-gtm-event="form_submit"
-                  data-gtm-form="application_form">
-            <span x-show="loading" class="loading loading-spinner"></span>
-            <span x-text="loading ? 'Wysyłanie...' : 'Wyślij Aplikację'"></span>
-          </button>
-        </form>
-
-        <div x-show="success" x-transition.scale.origin.top class="text-center py-20">
-           <div class="w-24 h-24 bg-green-50 text-green-500 rounded-full flex items-center justify-center mx-auto mb-8 shadow-inner">
-              <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-           </div>
-           <h3 class="text-3xl font-heading font-black text-base-content mb-4 uppercase tracking-tighter">Aplikacja Otrzymana!</h3>
-           <p class="text-base-content/70 leading-relaxed mb-10 font-medium px-4 text-lg">Dziękujemy! Otrzymaliśmy Twoje informacje. <br/>Nasz menedżer skontaktuje się z Tobą wkrótce, aby omowić szczegóły zatrudnienia.</p>
-           <a href="/" class="btn btn-outline border-base-content/20 font-heading font-bold">Powrót do Strony Głównej</a>
-        </div>
+        <!-- Vacancy Grid -->
+        <VacancyGrid />
 
       </div>
+    </section>
 
-    </div>
-  </section>
+    <!-- Divider -->
+    <div class="relative h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent max-w-7xl mx-auto"></div>
 
-  <!-- Back to Top Button -->
-  <button 
-    @click="window.scrollTo({ top: 0, behavior: 'smooth' })"
-    x-data="{ show: false }"
-    x-show="show"
-    @scroll.window="show = window.pageYOffset > 300"
-    x-transition:enter="transition ease-out duration-300"
-    x-transition:enter-start="opacity-0 translate-y-10"
-    x-transition:enter-end="opacity-100 translate-y-0"
-    class="fixed bottom-8 right-8 btn btn-circle btn-primary shadow-xl shadow-primary/20 z-50"
-    aria-label="Back to top">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18" /></svg>
-  </button>
-</MainLayout>
+    <!-- Application Form Section -->
+    <section class="py-24 md:py-32 bg-base-100 reveal">
+      <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Form Title -->
+        <div class="max-w-2xl mx-auto text-center mb-12">
+          <div class="inline-block px-6 py-2 bg-primary/10 rounded-full mb-4">
+            <span class="text-primary font-heading font-bold uppercase text-xs tracking-[0.2em]">Gotowy dołączyć?</span>
+          </div>
+          <h2 class="text-4xl font-heading font-extrabold text-base-content sm:text-5xl uppercase tracking-tight mb-4">
+            Twoja <span class="text-primary">Aplikacja</span>
+          </h2>
+          <p class="text-base-content/60 text-base max-w-2xl mx-auto leading-relaxed">
+            Wypełnij szczegółowy formularz poniżej. Nasz zespół rekrutacyjny przeanalizuje Twoją aplikację w ciągu <span class="font-bold text-primary">24-48 godzin</span> i skontaktuje się z Tobą przez WhatsApp lub email.
+          </p>
+        </div>
+
+        <ApplicationForm token={token} />
+
+      </div>
+    </section>
+  </main>
+
+  <Footer />

@@ -1,27 +1,13 @@
 ---
 // src/components/Fleet.astro
 import { Image } from 'astro:assets';
-import photo6 from '../assets/photo_6.webp';
-import photo7 from '../assets/photo_7.webp';
+import { getCollection, render } from 'astro:content';
 
-const trucks = [
-  {
-    brand: "Mercedes-Benz",
-    model: "Actros MP5 L",
-    image: photo6,
-    description: "Przyszłość Transportu Dalekobieznego. Doświadcz szczytu wydajności i bezpieczeństwa. Actros L na nowo definiuje transport dalekobiezny dzięki rewolucyjnemu systemowi MirrorCam i Multimedialnemu Kokpitowi.",
-    features: ["System MirrorCam", "Active Drive Assist 2", "Multimedialny Kokpit", "Silnik Euro 6d"],
-    tag: "Euro 6"
-  },
-  {
-    brand: "Scania",
-    model: "R450 (Next Gen)",
-    image: photo7,
-    description: "Legendarna Niezawodność Spotyka Nowoczesną Wydajność. Zaprojektowana dla maksymalnej dostępności i rentowności. Scania R-series nowej generacji łączy potężny silnik 450KM z renomową oszczędnością paliwa Scanii.",
-    features: ["Skrzynia Opticruise", "System Retardera", "Oświetlenie LED", "Zawieszenie Kabiny Pneumatyczne"],
-    tag: "Next Gen"
-  }
-];
+// Получаем коллекцию fleet из Content Collections
+const fleetEntries = await getCollection('fleet');
+
+// Сортируем по полю order
+const trucks = fleetEntries.sort((a, b) => a.data.order - b.data.order);
 ---
 
 <section id="fleet" class="py-24 md:py-32 bg-base-100 reveal">
@@ -35,56 +21,64 @@ const trucks = [
       </p>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-      {trucks.map((truck) => (
-        <div class="group flex flex-col h-full bg-base-100 border border-base-300 shadow-sm rounded-3xl overflow-hidden hover:shadow-xl hover:border-primary/20 transition-all duration-300">
-          <!-- Image Section -->
-          <div class="relative pt-[60%] overflow-hidden bg-base-200">
-            <Image 
-              src={truck.image} 
-              alt={`${truck.brand} ${truck.model} - modern truck for international transport`}
-              widths={[400, 600, 800, 1000]}
-              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
-              quality={80}
-              loading="lazy"
-              decoding="async"
-              class="absolute top-0 left-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-            />
-            <div class="absolute top-6 left-6">
-              <span class="badge badge-primary font-bold font-heading px-4 py-3 shadow-lg rounded-full">
-                {truck.tag}
-              </span>
-            </div>
-          </div>
-          
-          <!-- Content Section -->
-          <div class="p-6 md:p-8 flex flex-col h-full">
-            <!-- Title -->
-            <div class="mb-4">
-              <p class="text-sm font-heading font-bold text-primary uppercase tracking-wide mb-1">{truck.brand}</p>
-              <h3 class="text-2xl font-heading font-black text-base-content tracking-tight">{truck.model}</h3>
+    <!-- Адаптивная сетка: 1 колонка на мобильных, 2 на планшетах, 3 на больших экранах -->
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 lg:gap-12">
+      {await Promise.all(trucks.map(async (truck) => {
+        const { Content } = await render(truck);
+        return (
+          <div class="group flex flex-col h-full bg-base-100 border border-base-300 shadow-sm rounded-3xl overflow-hidden hover:shadow-xl hover:border-primary/20 transition-all duration-300">
+            <!-- Image Section -->
+            <div class="relative pt-[60%] overflow-hidden bg-base-200">
+              <Image 
+                src={truck.data.image} 
+                alt={`${truck.data.brand} ${truck.data.model} - modern truck for international transport`}
+                widths={[400, 600, 800, 1000]}
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
+                quality={80}
+                loading="lazy"
+                decoding="async"
+                class="absolute top-0 left-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              {truck.data.tag && (
+                <div class="absolute top-6 left-6">
+                  <span class="badge badge-primary font-bold font-heading px-4 py-3 shadow-lg rounded-full">
+                    {truck.data.tag}
+                  </span>
+                </div>
+              )}
             </div>
             
-            <!-- Description -->
-            <p class="text-base text-base-content/70 mb-6 leading-relaxed">{truck.description}</p>
-            
-            <!-- Features List -->
-            <div class="mt-auto pt-6 border-t border-base-content/10">
-              <p class="text-xs font-heading font-bold text-base-content/50 uppercase tracking-widest mb-4">Główne Cechy</p>
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {truck.features.map((feature) => (
-                  <div class="flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-                    <span class="text-sm font-medium text-base-content/80">{feature}</span>
-                  </div>
-                ))}
+            <!-- Content Section -->
+            <div class="p-6 md:p-8 flex flex-col h-full">
+              <!-- Title -->
+              <div class="mb-4">
+                <p class="text-sm font-heading font-bold text-primary uppercase tracking-wide mb-1">{truck.data.brand}</p>
+                <h3 class="text-2xl font-heading font-black text-base-content tracking-tight">{truck.data.model}</h3>
+              </div>
+              
+              <!-- Description -->
+              <div class="text-base text-base-content/70 mb-6 leading-relaxed">
+                <Content />
+              </div>
+              
+              <!-- Features List -->
+              <div class="mt-auto pt-6 border-t border-base-content/10">
+                <p class="text-xs font-heading font-bold text-base-content/50 uppercase tracking-widest mb-4">Główne Cechy</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {truck.data.features.map((feature: string) => (
+                    <div class="flex items-center gap-2">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                      </svg>
+                      <span class="text-sm font-medium text-base-content/80">{feature}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      ))}
+        );
+      }))}
     </div>
   </div>
 </section>

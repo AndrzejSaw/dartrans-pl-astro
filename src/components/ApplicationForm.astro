@@ -1,0 +1,234 @@
+---
+interface Props {
+  token: string;
+}
+
+const { token } = Astro.props;
+
+// Environment variables
+const COMPANY_NAME = import.meta.env.COMPANY_NAME || "Dartrans Transport";
+const COMPANY_ADDRESS_STREET = import.meta.env.COMPANY_ADDRESS_STREET || "ul. Przykładowa 1";
+const COMPANY_ADDRESS_POSTAL = import.meta.env.COMPANY_ADDRESS_POSTAL || "00-000";
+const COMPANY_ADDRESS_CITY = import.meta.env.COMPANY_ADDRESS_CITY || "Warszawa";
+---
+
+<!-- Application Form -->
+<div id="application-form" class="max-w-4xl mx-auto bg-base-100 rounded-[2.5rem] p-6 sm:p-8 md:p-12 shadow-2xl shadow-primary/5 border border-base-content/5"
+     x-data={`{ 
+       loading: false, 
+       success: false,
+       error: false,
+       errorMessage: '',
+       token: '${token}',
+       form: {
+         token: '',
+         first_name: '',
+         last_name: '',
+         email: '',
+         phone: '',
+         age: null,
+         ce_experience_years: '',
+         europe_experience_years: '',
+         work_schedule: '4/1: 4 weeks work, 1 week off',
+         truck_brands: '',
+         medical_certificate: 'NO',
+         trailer_types: '',
+         countries_driven: '',
+         last_employer: '',
+         acceptance: false,
+         website: '',
+         honeypot: ''
+       },
+       init() {
+         // Token passed from server-side frontmatter
+         this.form.token = this.token;
+       },
+       async submitApplication() {
+         if(!this.form.acceptance) {
+           this.error = true;
+           this.errorMessage = 'Musisz wyrazić zgodę na przetwarzanie danych.';
+           return;
+         }
+
+         this.loading = true;
+         this.error = false;
+         this.errorMessage = '';
+
+         try {
+           // Очищаем номер телефона от лишних пробелов и конвертируем age в число
+           const cleanedForm = {
+             ...this.form,
+             phone: this.form.phone.replace(/\s/g, ''),
+             age: this.form.age ? parseInt(this.form.age, 10) : null
+           };
+
+           const response = await fetch('/api/submit-application', {
+             method: 'POST',
+             headers: { 'Content-Type': 'application/json' },
+             body: JSON.stringify(cleanedForm)
+           });
+
+           if (response.ok) {
+             this.success = true;
+             this.$nextTick(() => {
+               this.$el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+             });
+           } else {
+             const errorData = await response.json();
+             this.error = true;
+             this.errorMessage = errorData.message || 'Błąd serwera. Sprawdź poprawność danych.';
+             console.error('Application error:', errorData);
+           }
+         } catch (e) {
+           this.error = true;
+           this.errorMessage = 'Błąd połączenia. Sprawdź swoje połączenie internetowe.';
+         } finally {
+           this.loading = false;
+         }
+       }
+     }`}
+>
+  <form @submit.prevent="submitApplication" x-show="!success" x-transition.opacity class="space-y-6">
+    
+    <div x-show="error" x-transition class="alert alert-error rounded-xl text-sm font-bold shadow-lg" style="display: none;">
+      <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+      <span x-text="errorMessage"></span>
+    </div>
+
+    <!-- Honeypot fields for bot detection (hidden from users) -->
+    <input 
+      type="text" 
+      name="website" 
+      x-model="form.website"
+      style="position:absolute;left:-9999px;width:1px;height:1px;" 
+      tabindex="-1" 
+      autocomplete="off"
+      aria-hidden="true"
+    />
+    <input 
+      type="text" 
+      name="honeypot" 
+      x-model="form.honeypot"
+      style="position:absolute;left:-9999px;width:1px;height:1px;" 
+      tabindex="-1" 
+      autocomplete="off"
+      aria-hidden="true"
+    />
+
+    <input type="hidden" x-model="form.token" />
+
+    <!-- Personal Data -->
+    <div class="divider text-primary font-heading font-bold text-sm tracking-widest uppercase py-4">Dane Osobowe</div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="form-control w-full">
+        <label class="label" for="ankieta-first-name"><span class="label-text font-bold font-heading text-base-content/80">TWOJE IMIĘ <span class="text-error">*</span></span></label>
+        <input type="text" id="ankieta-first-name" name="first_name" x-model="form.first_name" placeholder="Jan" class="input input-bordered rounded-xl bg-base-200/50 focus:bg-base-100 transition-all h-12 w-full" aria-required="true" required />
+      </div>
+      <div class="form-control w-full">
+        <label class="label" for="ankieta-last-name"><span class="label-text font-bold font-heading text-base-content/80">TWOJE NAZWISKO <span class="text-error">*</span></span></label>
+        <input type="text" id="ankieta-last-name" name="last_name" x-model="form.last_name" placeholder="Kowalski" class="input input-bordered rounded-xl bg-base-200/50 focus:bg-base-100 transition-all h-12 w-full" aria-required="true" required />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="form-control w-full">
+        <label class="label" for="ankieta-email"><span class="label-text font-bold font-heading text-base-content/80">TWÓJ EMAIL <span class="text-error">*</span></span></label>
+        <input type="email" id="ankieta-email" name="email" x-model="form.email" placeholder="przyklad@mail.com" class="input input-bordered rounded-xl bg-base-200/50 focus:bg-base-100 transition-all h-12 w-full" aria-required="true" required />
+      </div>
+      <div class="form-control w-full">
+        <label class="label" for="ankieta-age"><span class="label-text font-bold font-heading text-base-content/80">TWÓJ WIEK <span class="text-error">*</span></span></label>
+        <input type="number" id="ankieta-age" name="age" x-model.number="form.age" placeholder="35" min="21" max="70" class="input input-bordered rounded-xl bg-base-200/50 focus:bg-base-100 transition-all h-12 w-full" aria-required="true" required />
+      </div>
+    </div>
+
+    <div class="form-control w-full">
+      <label class="label" for="ankieta-phone"><span class="label-text font-bold font-heading text-base-content/80">TELEFON / WHATSAPP Z KODEM KRAJU <span class="text-error">*</span></span></label>
+      <input type="tel" id="ankieta-phone" name="phone" x-model="form.phone" placeholder="+48 123 456 789" class="input input-bordered rounded-xl bg-base-200/50 focus:bg-base-100 transition-all h-12 w-full" aria-required="true" required />
+    </div>
+
+    <!-- Professional Data -->
+    <div class="divider text-primary font-heading font-bold text-sm tracking-widest uppercase py-4">Doświadczenie Zawodowe</div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="form-control w-full">
+        <label class="label" for="ankieta-ce-exp"><span class="label-text font-bold font-heading text-base-content/80">DOŚWIADCZENIE C+E (LATA) <span class="text-error">*</span></span></label>
+        <input type="text" id="ankieta-ce-exp" name="ce_experience_years" x-model="form.ce_experience_years" placeholder="5 lat" class="input input-bordered rounded-xl bg-base-200/50 focus:bg-base-100 transition-all h-12 w-full" aria-required="true" required />
+      </div>
+      <div class="form-control w-full">
+        <label class="label" for="ankieta-europe-exp"><span class="label-text font-bold font-heading text-base-content/80">DOŚWIADCZENIE W EUROPIE (LATA) <span class="text-error">*</span></span></label>
+        <input type="text" id="ankieta-europe-exp" name="europe_experience_years" x-model="form.europe_experience_years" placeholder="3 lata" class="input input-bordered rounded-xl bg-base-200/50 focus:bg-base-100 transition-all h-12 w-full" aria-required="true" required />
+      </div>
+    </div>
+
+    <div class="form-control w-full">
+      <label class="label" for="ankieta-medical"><span class="label-text font-bold font-heading text-base-content/80">CZY POSIADASZ ZAŚWIADCZENIE LEKARSKIE I PSYCHOTESTY? <span class="text-error">*</span></span></label>
+      <select id="ankieta-medical" name="medical_certificate" x-model="form.medical_certificate" class="select select-bordered rounded-xl bg-base-200/50 font-bold w-full" aria-required="true">
+        <option value="NO">NIE</option>
+        <option value="YES">TAK</option>
+      </select>
+    </div>
+
+    <div class="form-control w-full">
+      <label class="label" for="ankieta-schedule"><span class="label-text font-bold font-heading text-base-content/80">GRAFIK PRACY <span class="text-error">*</span></span></label>
+      <select id="ankieta-schedule" name="work_schedule" x-model="form.work_schedule" class="select select-bordered rounded-xl bg-base-200/50 font-bold w-full" aria-required="true">
+        <option value="2/4: 2 weeks work, 4 days off">2/4: 2 tygodnie w pracy, 4 dni urlopu</option>
+        <option value="4/1: 4 weeks work, 1 week off">4/1: 4 tygodnie pracy, 1 tydzień urlopu</option>
+        <option value="5/1: 5 weeks work, 1 week off">5/1: 5 tygodni pracy, 1 tydzień urlopu</option>
+        <option value="6/2: 6 weeks work, 2 weeks off">6/2: 6 tygodni pracy, 2 tygodnie urlopu</option>
+        <option value="8/4: 8 weeks work, 4 weeks off">8/4: 8 tygodni pracy, 4 tygodnie urlopu</option>
+        <option value="Work in Poland, 5-6 days per week">Praca w Polsce, każdy weekend w domu</option>
+      </select>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="form-control w-full">
+        <label class="label" for="ankieta-trucks"><span class="label-text font-bold font-heading text-base-content/80">JAKIMI MARKAMI CIĘŻARÓWEK PROWADZIŁEŚ? <span class="text-error">*</span></span></label>
+        <input type="text" id="ankieta-trucks" name="truck_brands" x-model="form.truck_brands" placeholder="np. Scania, Volvo, Mercedes" class="input input-bordered rounded-xl bg-base-200/50 focus:bg-base-100 transition-all h-12 w-full" aria-required="true" required />
+      </div>
+      <div class="form-control w-full">
+        <label class="label" for="ankieta-trailers"><span class="label-text font-bold font-heading text-base-content/80">TYPY NACZEP <span class="text-error">*</span></span></label>
+        <input type="text" id="ankieta-trailers" name="trailer_types" x-model="form.trailer_types" placeholder="np. Firanka, Chłodnia, Wywrotka" class="input input-bordered rounded-xl bg-base-200/50 focus:bg-base-100 transition-all h-12 w-full" aria-required="true" required />
+      </div>
+    </div>
+
+    <div class="form-control w-full">
+      <label class="label" for="ankieta-countries"><span class="label-text font-bold font-heading text-base-content/80">KRAJE, W KTÓRYCH PROWADZIŁEŚ <span class="text-error">*</span></span></label>
+      <input type="text" id="ankieta-countries" name="countries_driven" x-model="form.countries_driven" placeholder="np. Niemcy, Francja, Belgia, Hiszpania" class="input input-bordered rounded-xl bg-base-200/50 focus:bg-base-100 transition-all h-12 w-full" aria-required="true" required />
+    </div>
+
+    <div class="form-control w-full">
+      <label class="label" for="ankieta-employer"><span class="label-text font-bold font-heading text-base-content/80">OSTATNI PRACODAWCA <span class="text-base-content/50">(opcjonalnie)</span></span></label>
+      <input type="text" id="ankieta-employer" name="last_employer" x-model="form.last_employer" placeholder="Nazwa firmy" class="input input-bordered rounded-xl bg-base-200/50 focus:bg-base-100 transition-all h-12 w-full" />
+    </div>
+
+    <div class="form-control pt-4">
+      <label class="label cursor-pointer justify-start gap-3 items-start" for="ankieta-acceptance">
+        <input type="checkbox" id="ankieta-acceptance" x-model="form.acceptance" required class="checkbox checkbox-primary checkbox-sm mt-1" aria-required="true" />
+        <span class="label-text text-xs text-base-content/70 leading-relaxed text-justify">
+          Wyrażam zgodę na przetwarzanie moich danych osobowych przez {COMPANY_NAME}, z siedzibą przy {COMPANY_ADDRESS_STREET}, {COMPANY_ADDRESS_POSTAL} {COMPANY_ADDRESS_CITY}, w celu rekrutacji na stanowisko, o które się ubiegam.
+        </span>
+      </label>
+    </div>
+
+    <button type="submit" 
+            class="btn btn-primary btn-block text-lg font-heading font-black h-14 rounded-2xl shadow-xl shadow-primary/20 border-none transition-all hover:scale-[1.01] active:scale-95 mt-4" 
+            :disabled="loading"
+            data-gtm-event="form_submit"
+            data-gtm-form="application_form">
+      <span x-show="loading" class="loading loading-spinner"></span>
+      <span x-text="loading ? 'Wysyłanie...' : 'Wyślij Aplikację'"></span>
+    </button>
+  </form>
+
+  <div x-show="success" x-transition.scale.origin.top class="text-center py-20">
+     <div class="w-24 h-24 bg-green-50 text-green-500 rounded-full flex items-center justify-center mx-auto mb-8 shadow-inner">
+        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+     </div>
+     <h3 class="text-3xl font-heading font-black text-base-content mb-4 uppercase tracking-tighter">Aplikacja Otrzymana!</h3>
+     <p class="text-base-content/70 leading-relaxed mb-4 font-medium px-4 text-lg">Dziękujemy! Otrzymaliśmy Twoje informacje.</p>
+     <p class="text-base-content/60 leading-relaxed mb-10 font-medium px-4">Nasz menedżer skontaktuje się z Tobą <span class="font-bold text-primary">w ciągu 24-48 godzin</span> przez WhatsApp lub email, aby omówić szczegóły zatrudnienia.</p>
+     <a href="/" class="btn btn-outline border-base-content/20 font-heading font-bold">Powrót do Strony Głównej</a>
+  </div>
+
+</div>
