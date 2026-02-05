@@ -48,7 +48,7 @@ const iconConfig = getIconConfig(entry.data.order);
 const htmlContent = marked.parse(entry.body || '');
 ---
 
-<div class="group bg-base-100 rounded-[2.5rem] p-8 border border-base-content/5 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+<div class="group bg-base-100 rounded-[2rem] p-8 border border-base-content/5 shadow-2xl shadow-primary/5 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2 transition-all duration-500">
   <div class="flex items-start gap-5 mb-6">
     <div class={`shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br ${iconConfig.gradient} flex items-center justify-center ${iconConfig.textColor} group-hover:scale-110 transition-transform duration-300`} set:html={iconConfig.icon} />
     
