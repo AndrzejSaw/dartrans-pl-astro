@@ -122,11 +122,11 @@ const COMPANY_ADDRESS_CITY = import.meta.env.COMPANY_ADDRESS_CITY || "Warszawa";
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div class="form-control w-full">
-        <label class="label" for="ankieta-first-name"><span class="label-text font-bold font-heading text-base-content/80">TWOJE IMIĘ <span class="text-error">*</span> (LITERY ŁACIŃSKIE)</span></label>
+        <label class="label" for="ankieta-first-name"><span class="label-text font-bold font-heading text-base-content/80">TWOJE IMIĘ <span class="text-error">*</span></span></label>
         <input type="text" id="ankieta-first-name" name="first_name" x-model="form.first_name" placeholder="Jan" class="input input-bordered rounded-xl bg-base-200/50 focus:bg-base-100 transition-all h-12 w-full" aria-required="true" required />
       </div>
       <div class="form-control w-full">
-        <label class="label" for="ankieta-last-name"><span class="label-text font-bold font-heading text-base-content/80">TWOJE NAZWISKO <span class="text-error">*</span> (LITERY ŁACIŃSKIE)</span></label>
+        <label class="label" for="ankieta-last-name"><span class="label-text font-bold font-heading text-base-content/80">TWOJE NAZWISKO <span class="text-error">*</span></span></label>
         <input type="text" id="ankieta-last-name" name="last_name" x-model="form.last_name" placeholder="Kowalski" class="input input-bordered rounded-xl bg-base-200/50 focus:bg-base-100 transition-all h-12 w-full" aria-required="true" required />
       </div>
     </div>
@@ -172,11 +172,12 @@ const COMPANY_ADDRESS_CITY = import.meta.env.COMPANY_ADDRESS_CITY || "Warszawa";
     <div class="form-control w-full">
       <label class="label" for="ankieta-schedule"><span class="label-text font-bold font-heading text-base-content/80">GRAFIK PRACY <span class="text-error">*</span></span></label>
       <select id="ankieta-schedule" name="work_schedule" x-model="form.work_schedule" class="select select-bordered rounded-xl bg-base-200/50 font-bold w-full" aria-required="true">
+        <option value="2/4: 2 weeks work, 4 days off">2/4: 2 tygodnie w pracy, 4 dni urlopu</option>
         <option value="4/1: 4 weeks work, 1 week off">4/1: 4 tygodnie pracy, 1 tydzień urlopu</option>
         <option value="5/1: 5 weeks work, 1 week off">5/1: 5 tygodni pracy, 1 tydzień urlopu</option>
         <option value="6/2: 6 weeks work, 2 weeks off">6/2: 6 tygodni pracy, 2 tygodnie urlopu</option>
         <option value="8/4: 8 weeks work, 4 weeks off">8/4: 8 tygodni pracy, 4 tygodnie urlopu</option>
-        <option value="Work in Poland, 5-6 days per week">Praca w Polsce, 5-6 dni w tygodniu</option>
+        <option value="Work in Poland, 5-6 days per week">Praca w Polsce, każdy weekend w domu</option>
       </select>
     </div>
 
