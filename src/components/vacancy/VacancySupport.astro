@@ -1,0 +1,24 @@
+---
+import { getCollection } from 'astro:content';
+import { marked } from 'marked';
+
+const supportEntry = (await getCollection('vacancy')).find(entry => entry.data.order === 4);
+if (!supportEntry) throw new Error('Vacancy support entry not found');
+
+const htmlContent = marked.parse(supportEntry.body || '');
+---
+
+<div class="card bg-base-100 border border-base-content/5 shadow-xl rounded-2xl p-6 hover:shadow-2xl transition-all duration-300">
+  <div class="flex items-start gap-4 mb-4">
+    <div class="shrink-0 w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-700 rounded-xl flex items-center justify-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+      </svg>
+    </div>
+    <div class="flex-1">
+      <h3 class="font-heading font-bold text-2xl text-base-content mb-2">{supportEntry.data.title}</h3>
+    </div>
+  </div>
+  
+  <div class="prose prose-sm max-w-none prose-headings:font-heading prose-headings:text-primary prose-strong:text-base-content prose-strong:font-bold prose-ul:space-y-2 prose-li:text-base-content/80" set:html={htmlContent} />
+</div>

@@ -39,9 +39,20 @@ const benefitsCollection = defineCollection({
   }),
 });
 
-// 4. Экспортируем объект collections
+// 4. Определяем коллекцию Vacancy (Описание вакансии)
+const vacancyCollection = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/vacancy" }),
+  
+  schema: z.object({
+    title: z.string(), // Заголовок секции
+    order: z.number(), // Порядок отображения
+  }),
+});
+
+// 5. Экспортируем объект collections
 export const collections = {
   'faq': faqCollection,
   'fleet': fleetCollection,
   'benefits': benefitsCollection,
+  'vacancy': vacancyCollection,
 };
