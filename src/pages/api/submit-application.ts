@@ -34,11 +34,6 @@ const ApplicationSchema = z.object({
   phone: z.string()
     .regex(/^\+?[\d\s]{10,20}$/, 'Phone must contain 10-15 digits with optional + prefix and spaces')
     .transform(val => val.replace(/\s/g, '')),
-  viber_phone: z.string()
-    .regex(/^\+?[\d\s]{10,20}$/, 'Viber phone must contain 10-15 digits with optional + prefix and spaces')
-    .transform(val => val.replace(/\s/g, ''))
-    .optional()
-    .or(z.literal('')),
   age: z.union([
     z.number().int().min(21, 'Age must be at least 21').max(70, 'Age must not exceed 70'),
     z.string().regex(/^\d+$/).transform(val => parseInt(val, 10))
@@ -47,9 +42,6 @@ const ApplicationSchema = z.object({
     .max(10, 'Experience field too long'),
   europe_experience_years: z.string()
     .max(10, 'Experience field too long'),
-  pesel_status: z.enum(['YES', 'NO'], { 
-    errorMap: () => ({ message: 'PESEL status must be YES or NO' }) 
-  }),
   medical_certificate: z.enum(['YES', 'NO'], { 
     errorMap: () => ({ message: 'Medical certificate must be YES or NO' }) 
   }),
