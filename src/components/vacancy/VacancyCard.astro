@@ -8,38 +8,38 @@ interface Props {
 
 const { entry } = Astro.props;
 
-// Determine icon and gradient based on order
+// Determine icon based on order - unified primary color
 const getIconConfig = (order: number) => {
   switch (order) {
     case 1: // Salary
       return {
-        gradient: 'from-emerald-500/20 to-green-500/20',
-        textColor: 'text-emerald-600',
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`
+        gradient: 'from-primary/10 to-primary/20',
+        textColor: 'text-primary',
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`
       };
     case 2: // Schedule
       return {
-        gradient: 'from-blue-500/20 to-indigo-500/20',
-        textColor: 'text-blue-600',
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>`
+        gradient: 'from-primary/10 to-primary/20',
+        textColor: 'text-primary',
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>`
       };
     case 3: // Fleet
       return {
-        gradient: 'from-orange-500/20 to-amber-500/20',
-        textColor: 'text-orange-600',
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>`
+        gradient: 'from-primary/10 to-primary/20',
+        textColor: 'text-primary',
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>`
       };
     case 4: // Support
       return {
-        gradient: 'from-violet-500/20 to-purple-500/20',
-        textColor: 'text-purple-600',
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" /></svg>`
+        gradient: 'from-primary/10 to-primary/20',
+        textColor: 'text-primary',
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" /></svg>`
       };
     default:
       return {
-        gradient: 'from-gray-500/20 to-slate-500/20',
-        textColor: 'text-gray-600',
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`
+        gradient: 'from-primary/10 to-primary/20',
+        textColor: 'text-primary',
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`
       };
   }
 };
@@ -57,5 +57,40 @@ const htmlContent = marked.parse(entry.body || '');
     </div>
   </div>
   
-  <div class="prose prose-sm max-w-none prose-headings:font-heading prose-headings:text-primary prose-headings:mb-3 prose-strong:text-base-content prose-strong:font-bold prose-ul:space-y-2 prose-li:text-base-content/70 text-base-content/70" set:html={htmlContent} />
+  <div class="vacancy-content prose max-w-none text-base" set:html={htmlContent} />
 </div>
+
+<style>
+  .vacancy-content :global(h3) {
+    @apply text-xl font-heading font-bold text-base-content mt-6 mb-4 first:mt-0;
+  }
+  
+  .vacancy-content :global(strong) {
+    @apply text-primary font-bold text-base;
+  }
+  
+  .vacancy-content :global(ul) {
+    @apply space-y-3 my-4 list-none pl-0;
+  }
+  
+  .vacancy-content :global(li) {
+    @apply relative pl-6 text-base-content/70 leading-relaxed text-base;
+  }
+  
+  .vacancy-content :global(li::before) {
+    content: "";
+    @apply absolute left-0 top-[0.65em] w-2 h-2 rounded-full bg-primary;
+  }
+  
+  .vacancy-content :global(p) {
+    @apply text-base-content/70 leading-relaxed my-3 text-base;
+  }
+  
+  .vacancy-content :global(em) {
+    @apply not-italic text-primary font-semibold;
+  }
+  
+  .vacancy-content :global(.highlight-number) {
+    @apply text-primary font-bold text-xl;
+  }
+</style>
