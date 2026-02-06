@@ -1,8 +1,8 @@
 ---
 export const prerender = false;
 import MainLayout from '../layouts/MainLayout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+//import Header from '../components/Header.astro';
+//import Footer from '../components/Footer.astro';
 import ApplicationForm from '../components/ApplicationForm.astro';
 import VacancyGrid from '../components/vacancy/VacancyGrid.astro';
 
@@ -22,7 +22,7 @@ if (!token) {
 <MainLayout title={`Ankieta Kierowcy | ${SITE_NAME}`}>
   <meta name="robots" content="noindex, nofollow" slot="head" />
 
-  <Header />
+  <!--<Header /> -->
 
   <main>
     <!-- Hero Section -->
@@ -87,4 +87,4 @@ if (!token) {
     </section>
   </main>
 
-  <Footer />
+  <!--<Footer /> -->
