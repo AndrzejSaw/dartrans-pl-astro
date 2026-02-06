@@ -1,5 +1,6 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
 const COMPANY_NAME = import.meta.env.COMPANY_NAME || 'DARTRANS & HENZEL Sp. z o.o.';
@@ -10,19 +11,36 @@ const SITE_NAME = import.meta.env.SITE_NAME || 'Dartrans & Henzel';
 ---
 
 <MainLayout title={`Regulamin Serwisu | ${SITE_NAME}`}>
-  <main class="bg-base-100 pt-32 pb-24">
-    <div class="max-w-3xl mx-auto px-4">
-      <h1 class="text-4xl md:text-5xl font-heading font-black text-base-content mb-8 tracking-tight">Regulamin Serwisu</h1>
-      
-      <div class="space-y-8 font-sans text-base-content/80 leading-relaxed">
+  <Header />
+  
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden bg-neutral py-16 md:py-20">
+    <!-- Gradient decoration -->
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent"></div>
+    
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 reveal">
+      <h1 class="text-5xl md:text-6xl font-heading font-extrabold text-white tracking-tight uppercase">
+        Regulamin <span class="text-primary">Serwisu</span>
+      </h1>
+      <p class="mt-4 text-lg text-white/70">Zasady korzystania ze strony internetowej</p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="bg-base-100 py-24 md:py-32">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="space-y-12 font-sans text-base-content/70 leading-relaxed reveal">
         <section>
           <p class="mb-4">
             Niniejszy Regulamin określa zasady korzystania ze strony internetowej {SITE_NAME}.
           </p>
         </section>
 
+        <!-- Section Divider -->
+        <div class="relative h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent my-12"></div>
+
         <section>
-          <h2 class="text-2xl font-heading font-bold text-base-content mb-4">1. Postanowienia Ogólne</h2>
+          <h2 class="text-3xl md:text-4xl font-heading font-extrabold text-base-content mb-6 tracking-tight">1. Postanowienia Ogólne</h2>
           <ul class="list-disc list-outside ml-5 space-y-2">
             <li>Właścicielem strony internetowej jest <strong>{COMPANY_NAME}</strong> z siedzibą w {COMPANY_ADDRESS_STREET}, {COMPANY_ADDRESS_POSTAL} {COMPANY_ADDRESS_CITY}, Polska.</li>
             <li>Strona internetowa ma charakter informacyjno-rekrutacyjny. Jej celem jest prezentacja ofert pracy dla kierowców C+E oraz umożliwienie kontaktu z pracodawcą.</li>
@@ -31,7 +49,7 @@ const SITE_NAME = import.meta.env.SITE_NAME || 'Dartrans & Henzel';
         </section>
 
         <section>
-          <h2 class="text-2xl font-heading font-bold text-base-content mb-4">2. Świadczone Usługi Elektroniczne</h2>
+          <h2 class="text-3xl md:text-4xl font-heading font-extrabold text-base-content mb-6 tracking-tight">2. Świadczone Usługi Elektroniczne</h2>
           <p>
             Za pośrednictwem strony internetowej Usługodawca oferuje następujące usługi:
           </p>
@@ -43,34 +61,37 @@ const SITE_NAME = import.meta.env.SITE_NAME || 'Dartrans & Henzel';
         </section>
 
         <section>
-          <h2 class="text-2xl font-heading font-bold text-base-content mb-4">3. Zasady Korzystania</h2>
+          <h2 class="text-3xl md:text-4xl font-heading font-extrabold text-base-content mb-6 tracking-tight">3. Zasady Korzystania</h2>
           <p>
             Użytkownicy zobowiązani są korzystać ze strony internetowej w sposób zgodny z prawem i dobrymi praktykami, z poszanowaniem dóbr osobistych oraz praw własności intelektualnej osób trzecich. Zabronione jest dostarczanie przez Użytkowników treści o charakterze bezprawnym.
           </p>
         </section>
 
         <section>
-          <h2 class="text-2xl font-heading font-bold text-base-content mb-4">4. Odpowiedzialność</h2>
+          <h2 class="text-3xl md:text-4xl font-heading font-extrabold text-base-content mb-6 tracking-tight">4. Odpowiedzialność</h2>
           <p>
             Administrator dokłada wszelkich starań, aby informacje zawarte na stronie internetowej były aktualne i rzetelne. Nie ponosi jednak odpowiedzialności za konsekwencje korzystania przez Użytkownika z informacji zawartych na stronie internetowej, w szczególności za decyzje podjęte na ich podstawie.
           </p>
         </section>
 
         <section>
-          <h2 class="text-2xl font-heading font-bold text-base-content mb-4">5. Własność Intelektualna</h2>
+          <h2 class="text-3xl md:text-4xl font-heading font-extrabold text-base-content mb-6 tracking-tight">5. Własność Intelektualna</h2>
           <p>
             Wszystkie treści zamieszczone na stronie internetowej (teksty, grafiki, logo) są chronione prawem autorskim i stanowią własność {COMPANY_NAME} lub jego partnerów. Kopiowanie i rozpowszechnianie ich bez zgody właściciela jest zabronione.
           </p>
         </section>
 
         <section>
-          <h2 class="text-2xl font-heading font-bold text-base-content mb-4">6. Postanowienia Końcowe</h2>
+          <h2 class="text-3xl md:text-4xl font-heading font-extrabold text-base-content mb-6 tracking-tight">6. Postanowienia Końcowe</h2>
           <p>
             Administrator zastrzega sobie prawo do wprowadzania zmian w niniejszym Regulaminie. Wszelkie zmiany wchodzą w życie z chwilą ich opublikowania na stronie internetowej.
           </p>
         </section>
 
-        <div class="pt-8 border-t border-base-content/10">
+        <!-- Section Divider -->
+        <div class="relative h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent my-12"></div>
+
+        <div class="bg-base-200/50 rounded-2xl p-8">
           <p class="text-sm text-base-content/60">Ostatnia aktualizacja: 21 stycznia 2026</p>
         </div>
       </div>

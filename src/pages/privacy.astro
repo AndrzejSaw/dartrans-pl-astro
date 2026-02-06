@@ -1,5 +1,6 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
 const COMPANY_NAME = import.meta.env.COMPANY_NAME || 'DARTRANS & HENZEL Sp. z o.o.';
@@ -11,26 +12,43 @@ const SITE_NAME = import.meta.env.SITE_NAME || 'Dartrans & Henzel';
 ---
 
 <MainLayout title={`Polityka Prywatności | ${SITE_NAME}`}>
-  <main class="bg-base-100 pt-32 pb-24">
-    <div class="max-w-3xl mx-auto px-4">
-      <h1 class="text-4xl md:text-5xl font-heading font-black text-base-content mb-8 tracking-tight">Polityka Prywatności</h1>
-      
-      <div class="space-y-8 font-sans text-base-content/80 leading-relaxed">
+  <Header />
+  
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden bg-neutral py-16 md:py-20">
+    <!-- Gradient decoration -->
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent"></div>
+    
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 reveal">
+      <h1 class="text-5xl md:text-6xl font-heading font-extrabold text-white tracking-tight uppercase">
+        Polityka <span class="text-primary">Prywatności</span>
+      </h1>
+      <p class="mt-4 text-lg text-white/70">Ochrona Twoich danych osobowych</p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="bg-base-100 py-24 md:py-32">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="space-y-12 font-sans text-base-content/70 leading-relaxed reveal">
         <section>
           <p class="mb-4">
             Niniejsza Polityka Prywatności określa zasady przetwarzania i ochrony danych osobowych przekazanych przez Użytkowników w związku z korzystaniem ze strony internetowej {SITE_NAME}.
           </p>
         </section>
 
+        <!-- Section Divider -->
+        <div class="relative h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent my-12"></div>
+
         <section>
-          <h2 class="text-2xl font-heading font-bold text-base-content mb-4">1. Administrator Danych</h2>
+          <h2 class="text-3xl md:text-4xl font-heading font-extrabold text-base-content mb-6 tracking-tight">1. Administrator Danych</h2>
           <p>
             Administratorem danych osobowych zawartych w serwisie jest <strong>{COMPANY_NAME}</strong> z siedzibą w {COMPANY_ADDRESS_STREET}, {COMPANY_ADDRESS_POSTAL} {COMPANY_ADDRESS_CITY}, Polska, wpisaną do Rejestru Przedsiębiorców. Adres email: <a href={`mailto:${COMPANY_EMAIL}`} class="text-primary hover:underline">{COMPANY_EMAIL}</a>.
           </p>
         </section>
 
         <section>
-          <h2 class="text-2xl font-heading font-bold text-base-content mb-4">2. Cele Przetwarzania Danych</h2>
+          <h2 class="text-3xl md:text-4xl font-heading font-extrabold text-base-content mb-6 tracking-tight">2. Cele Przetwarzania Danych</h2>
           <p class="mb-2">Dane osobowe przetwarzane są w następujących celach:</p>
           <ul class="list-disc list-outside ml-5 space-y-2">
             <li>Prowadzenie procesu rekrutacji na stanowisko kierowcy C+E;</li>
@@ -40,14 +58,14 @@ const SITE_NAME = import.meta.env.SITE_NAME || 'Dartrans & Henzel';
         </section>
 
         <section>
-          <h2 class="text-2xl font-heading font-bold text-base-content mb-4">3. Rodzaje Przetwarzanych Danych</h2>
+          <h2 class="text-3xl md:text-4xl font-heading font-extrabold text-base-content mb-6 tracking-tight">3. Rodzaje Przetwarzanych Danych</h2>
           <p>
             Administrator może przetwarzać następujące dane osobowe Użytkowników: imię i nazwisko, numer telefonu, adres email, informacje o doświadczeniu zawodowym oraz inne dane dobrowolnie podane w formularzu aplikacyjnym.
           </p>
         </section>
 
         <section>
-          <h2 class="text-2xl font-heading font-bold text-base-content mb-4">4. Prawa Użytkownika</h2>
+          <h2 class="text-3xl md:text-4xl font-heading font-extrabold text-base-content mb-6 tracking-tight">4. Prawa Użytkownika</h2>
           <p>
             Użytkownik ma prawo do:
           </p>
@@ -60,20 +78,23 @@ const SITE_NAME = import.meta.env.SITE_NAME || 'Dartrans & Henzel';
         </section>
 
         <section>
-          <h2 class="text-2xl font-heading font-bold text-base-content mb-4">5. Pliki Cookie</h2>
+          <h2 class="text-3xl md:text-4xl font-heading font-extrabold text-base-content mb-6 tracking-tight">5. Pliki Cookie</h2>
           <p>
             Strona internetowa wykorzystuje pliki cookie w celu zapewnienia prawidłowego działania serwisu oraz w celach statystycznych. Użytkownicy mogą w każdej chwili zmienić ustawienia przeglądarki dotyczące plików cookie.
           </p>
         </section>
 
         <section>
-          <h2 class="text-2xl font-heading font-bold text-base-content mb-4">6. Kontakt</h2>
+          <h2 class="text-3xl md:text-4xl font-heading font-extrabold text-base-content mb-6 tracking-tight">6. Kontakt</h2>
           <p>
             W sprawach związanych z ochroną danych osobowych prosimy o kontakt pod adresem email: <a href={`mailto:${COMPANY_EMAIL}`} class="text-primary hover:underline">{COMPANY_EMAIL}</a>.
           </p>
         </section>
 
-        <div class="pt-8 border-t border-base-content/10">
+        <!-- Section Divider -->
+        <div class="relative h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent my-12"></div>
+
+        <div class="bg-base-200/50 rounded-2xl p-8">
           <p class="text-sm text-base-content/60">Ostatnia aktualizacja: 21 stycznia 2026</p>
         </div>
       </div>
