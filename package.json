@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "@types/marked": "^5.0.2",
+    "@types/node": "^25.2.2",
     "sharp": "^0.34.5",
     "terser": "^5.46.0"
   }

@@ -120,7 +120,7 @@ const roadmapSteps = [
             
             return (
               <div class="collapse collapse-plus bg-base-100 border border-base-content/10 hover:border-base-content/20 rounded-xl transition-all duration-300 shadow-sm hover:shadow-md">
-                <input type="radio" name="faq-accordion" id={`faq-${faq.id}`} checked={index === 0} />
+                <input type="radio" name="faq-accordion" id={`faq-${faq.id}`} checked={index === 0} aria-label={faq.data.question} />
                 <div class="collapse-title text-base font-heading font-bold text-base-content pr-10">
                   {faq.data.question}
                 </div>

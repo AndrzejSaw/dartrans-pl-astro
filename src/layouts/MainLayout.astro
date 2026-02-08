@@ -2,6 +2,8 @@
 // src/layouts/MainLayout.astro
 import CookieConsent from '../components/CookieConsent.astro';
 import '../styles/global.css';
+import criticalCss from '../styles/critical.css?raw';
+
 const { title } = Astro.props;
 const GTM_ID = import.meta.env.GTM_ID;
 ---
@@ -13,9 +15,16 @@ const GTM_ID = import.meta.env.GTM_ID;
     <link rel="apple-touch-icon" href="/favicon.png" />
     <title>{title}</title>
     
+    <!-- Inline Critical CSS - устраняет render-blocking (экономия ~720ms) -->
+    <style is:inline set:html={criticalCss}></style>
+    
     <!-- DNS Prefetch for external resources -->
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
     <link rel="preconnect" href="https://transport.nexus-talent.eu" crossorigin>
+    
+    <!-- Preload критических шрифтов -->
+    <link rel="preload" href="/fonts/inter-regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/inter-700.woff2" as="font" type="font/woff2" crossorigin />
     
     <slot name="head" />
 
