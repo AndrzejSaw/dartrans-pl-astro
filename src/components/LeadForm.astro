@@ -17,7 +17,7 @@ const COMPANY_ADDRESS_CITY = import.meta.env.COMPANY_ADDRESS_CITY || 'Biskupice'
         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-black text-white tracking-tighter mb-6 lg:mb-8 drop-shadow-sm">
           Gotowy do <span class="text-primary">Startu?</span>
         </h2>
-        <p class="text-lg lg:text-xl font-sans text-white/70 mb-10 leading-relaxed mx-auto lg:mx-0 max-w-lg">
+        <p class="text-lg lg:text-xl font-sans text-white/90 mb-10 leading-relaxed mx-auto lg:mx-0 max-w-lg">
           Wypełnij aplikację, a nasz menedżer skontaktuje się z Tobą przez <span class="text-primary font-bold">WhatsApp</span> na krótką rozmowę.
         </p>
         
@@ -28,7 +28,7 @@ const COMPANY_ADDRESS_CITY = import.meta.env.COMPANY_ADDRESS_CITY || 'Biskupice'
             </div>
             <div>
               <span class="block font-heading font-black text-white uppercase text-xs tracking-[0.2em] mb-1">Wsparcie 24/7</span>
-              <p class="text-white/60 text-sm font-medium font-sans">Szybka akceptacja kandydata</p>
+              <p class="text-white/85 text-sm font-medium font-sans">Szybka akceptacja kandydata</p>
             </div>
           </div>
           <div class="flex gap-x-5 group">
@@ -37,7 +37,7 @@ const COMPANY_ADDRESS_CITY = import.meta.env.COMPANY_ADDRESS_CITY || 'Biskupice'
             </div>
             <div>
               <span class="block font-heading font-black text-white uppercase text-xs tracking-[0.2em] mb-1">Przejrzyste</span>
-              <p class="text-white/60 text-sm font-medium font-sans">Bez ukrytych opłat i prowizji</p>
+              <p class="text-white/85 text-sm font-medium font-sans">Bez ukrytych opłat i prowizji</p>
             </div>
           </div>
         </div>
@@ -134,7 +134,7 @@ const COMPANY_ADDRESS_CITY = import.meta.env.COMPANY_ADDRESS_CITY || 'Biskupice'
         <form @submit.prevent="submitForm" x-show="!success" x-transition.opacity class="space-y-5">
           <div class="mb-6 lg:mb-8 text-center lg:text-left">
             <h3 class="text-2xl lg:text-3xl font-heading font-black text-base-content tracking-tight">Aplikacja Kierowcy</h3>
-            <p class="text-base-content/60 text-sm mt-1 font-medium italic">* Pola wymagane</p>
+            <p class="text-base-content/85 text-sm mt-1 font-medium italic">* Pola wymagane</p>
           </div>
 
           <div x-show="error" class="alert alert-error mb-6 rounded-xl text-sm font-bold shadow-lg">
@@ -218,7 +218,7 @@ const COMPANY_ADDRESS_CITY = import.meta.env.COMPANY_ADDRESS_CITY || 'Biskupice'
           <div class="form-control">
             <label class="label cursor-pointer justify-start gap-3 items-start" for="lead-gdpr-consent">
               <input type="checkbox" id="lead-gdpr-consent" required class="checkbox checkbox-primary checkbox-sm mt-1" aria-required="true" />
-              <span class="label-text text-xs text-base-content/70 leading-relaxed text-justify">
+              <span class="label-text text-xs text-base-content leading-relaxed text-justify">
                 Wyrażam zgodę na przetwarzanie moich danych osobowych przez {COMPANY_NAME}, z siedzibą przy {COMPANY_ADDRESS_STREET}, {COMPANY_ADDRESS_POSTAL} {COMPANY_ADDRESS_CITY}, w celu rekrutacji na stanowisko, o które się ubiegam.
               </span>
             </label>
@@ -239,7 +239,7 @@ const COMPANY_ADDRESS_CITY = import.meta.env.COMPANY_ADDRESS_CITY || 'Biskupice'
               <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
            </div>
            <h3 class="text-2xl font-heading font-black text-base-content mb-4 uppercase tracking-tighter">Aplikacja Wysłana!</h3>
-           <p class="text-base-content/70 leading-relaxed mb-10 font-medium px-4">Dziękujemy! W przypadku akceptacji wyślemy Ci informacje przez WhatsApp i email.</p>
+           <p class="text-base-content leading-relaxed mb-10 font-medium px-4">Dziękujemy! W przypadku akceptacji wyślemy Ci informacje przez WhatsApp i email.</p>
            
         </div>
 

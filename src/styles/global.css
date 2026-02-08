@@ -69,12 +69,12 @@
   /* High-contrast links for WCAG AA compliance - only for light backgrounds */
   main a,
   .prose a {
-    color: #0066cc;
+    color: #0052a3;
   }
   
   main a:hover,
   .prose a:hover {
-    color: #004d99;
+    color: #003d7a;
   }
 }
 
