@@ -10,9 +10,17 @@ import Company from '../components/Company.astro';
 import ProcessAndFAQ from '../components/ProcessAndFAQ.astro';
 import LeadForm from '../components/LeadForm.astro';
 import Footer from '../components/Footer.astro';
+
+const seoTitle = "Praca Kierowca CE Poznań | Dartrans & Henzel";
+const seoDescription = "Szukasz pracy jako kierowca CE w Poznaniu? Dartrans & Henzel oferuje: atrakcyjne wynagrodzenie, nowoczesne ciężarówki Euro 6, elastyczne grafiki 4/1 do 8/4, trasy Europa i Polska. Aplikuj online!";
+const seoKeywords = "praca kierowca ce poznań, kierowca ce poznań, praca kierowca międzynarodowy poznań, transport poznań, kierowca c+e poznań, oferty pracy kierowca poznań";
 ---
 
-<MainLayout title="Praca dla Kierowcy C+E w Polsce | Dartrans & Henzel">
+<MainLayout title={seoTitle}>
+  <Fragment slot="seo">
+    <meta name="description" content={seoDescription} />
+    <meta name="keywords" content={seoKeywords} />
+  </Fragment>
   <Header />
   <main>
     <Hero />
