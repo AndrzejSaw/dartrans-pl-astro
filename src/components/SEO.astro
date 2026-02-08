@@ -25,6 +25,7 @@ const SALARY_MAX = parseInt(import.meta.env.SALARY_MAX || '12000');
 interface Props {
   title: string;
   description: string;
+  keywords?: string;
   image?: string;
   url?: string;
   type?: 'website' | 'article';
@@ -33,7 +34,8 @@ interface Props {
 
 const { 
   title, 
-  description, 
+  description,
+  keywords, 
   image = import.meta.env.OG_IMAGE || '/og-image.jpg', 
   url,
   type = 'website',
@@ -49,6 +51,7 @@ const siteName = SITE_NAME;
 <title>{title}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
+{keywords && <meta name="keywords" content={keywords} />}
 <link rel="canonical" href={canonicalURL} />
 {noindex && <meta name="robots" content="noindex, nofollow" />}
 
@@ -61,7 +64,7 @@ const siteName = SITE_NAME;
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:site_name" content={siteName} />
-<meta property="og:locale" content="en_US" />
+<meta property="og:locale" content="pl_PL" />
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
@@ -109,16 +112,16 @@ const siteName = SITE_NAME;
       "unitText": "MONTH"
     }
   },
-  "qualifications": "C+E driving license, minimum 21 years old, international driving experience",
-  "responsibilities": "Long-distance freight transport across Europe, operating modern Euro 6 trucks",
-  "benefits": "Competitive salary, modern fleet, flexible work schedules, ECO bonuses",
-  "workHours": "Flexible schedules: 4/1, 5/1, 6/2, 8/4 weeks",
+  "qualifications": "Prawo jazdy kategorii C+E, minimum 21 lat, doświadczenie w transporcie międzynarodowym",
+  "responsibilities": "Transport towarów na długich trasach w Europie, obsługa nowoczesnych ciężarówek Euro 6",
+  "benefits": "Konkurencyjne wynagrodzenie, nowoczesna flota, elastyczne grafiki pracy, bonusy ECO",
+  "workHours": "Elastyczne grafiki: 4/1, 5/1, 6/2, 8/4 tygodnie",
   "jobBenefits": [
-    "Health insurance",
-    "Modern truck fleet (Volvo, Scania, Mercedes, MAN)",
-    "ECO driving bonuses",
-    "Professional uniform",
-    "Own service center"
+    "Ubezpieczenie zdrowotne",
+    "Nowoczesna flota ciężarówek (Volvo, Scania, Mercedes, MAN)",
+    "Bonusy za ekonomiczną jazdę",
+    "Profesjonalna odzież robocza",
+    "Własny serwis"
   ]
 })} />
 
@@ -149,7 +152,7 @@ const siteName = SITE_NAME;
   },
   "contactPoint": {
     "@type": "ContactPoint",
-    "contactType": "Recruitment",
-    "availableLanguage": ["English", "Polish", "Russian", "Ukrainian", "German"]
+    "contactType": "Rekrutacja",
+    "availableLanguage": ["Polski", "Angielski", "Rosyjski", "Ukraiński", "Niemiecki"]
   }
 })} />
