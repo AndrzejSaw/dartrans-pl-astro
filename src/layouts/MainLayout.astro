@@ -2,6 +2,8 @@
 // src/layouts/MainLayout.astro
 import CookieConsent from '../components/CookieConsent.astro';
 import '../styles/global.css';
+import criticalCss from '../styles/critical.css?raw';
+
 const { title } = Astro.props;
 const GTM_ID = import.meta.env.GTM_ID;
 ---
@@ -12,6 +14,13 @@ const GTM_ID = import.meta.env.GTM_ID;
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
     <title>{title}</title>
+    
+    <!-- 🔥 КРИТИЧНО: Preload шрифтов ПЕРЕД CSS для устранения водопада зависимостей -->
+    <link rel="preload" href="/fonts/inter-regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/inter-700.woff2" as="font" type="font/woff2" crossorigin />
+    
+    <!-- Inline Critical CSS (с font-face внутри) -->
+    <style is:inline set:html={criticalCss}></style>
     
     <!-- DNS Prefetch for external resources -->
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">

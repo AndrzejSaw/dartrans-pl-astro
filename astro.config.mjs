@@ -5,6 +5,7 @@ import alpinejs from '@astrojs/alpinejs';
 import partytown from '@astrojs/partytown';
 
 export default defineConfig({
+  site: 'https://ce-rekrutacja.pl',
   // В Astro 5 режим по умолчанию поддерживает гибридную логику
   adapter: node({
     mode: 'standalone',

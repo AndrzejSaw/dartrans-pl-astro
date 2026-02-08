@@ -2,36 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Self-hosted fonts for performance */
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('/fonts/inter-regular.woff2') format('woff2');
-}
-
+/* 🔥 Font-face для дополнительных весов (400 и 700 уже в critical.css) */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
-  font-display: swap;
+  font-display: optional;
   src: url('/fonts/inter-600.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'Inter';
   font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url('/fonts/inter-700.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
   font-weight: 800;
-  font-display: swap;
+  font-display: optional;
   src: url('/fonts/inter-700.woff2') format('woff2'); /* используем 700 для 800 */
 }
 
@@ -39,7 +23,7 @@
   font-family: 'Inter';
   font-style: normal;
   font-weight: 900;
-  font-display: swap;
+  font-display: optional;
   src: url('/fonts/inter-700.woff2') format('woff2'); /* используем 700 для 900 (black) */
 }
 
@@ -69,12 +53,12 @@
   /* High-contrast links for WCAG AA compliance - only for light backgrounds */
   main a,
   .prose a {
-    color: #0066cc;
+    color: #0052a3;
   }
   
   main a:hover,
   .prose a:hover {
-    color: #004d99;
+    color: #003d7a;
   }
 }
 

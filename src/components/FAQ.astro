@@ -22,12 +22,12 @@ const sortedFaqs = allFaqs.sort((a, b) => a.data.order - b.data.order);
           
           return (
             <div class="collapse collapse-plus bg-base-100 border border-base-200 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-              <input type="radio" name="faq-accordion" id={`faq-${faq.id}`} checked={index === 0} />
+              <input type="radio" name="faq-accordion" id={`faq-${faq.id}`} checked={index === 0} aria-label={faq.data.question} />
               <div class="collapse-title text-xl font-heading font-bold text-base-content pr-12">
                 {faq.data.question}
               </div>
               <div class="collapse-content">
-                <div class="text-base-content/70 leading-relaxed font-sans pt-2">
+                <div class="text-base-content leading-relaxed font-sans pt-2">
                   <Content />
                 </div>
               </div>

@@ -1,0 +1,12 @@
+# Robots.txt for ce-rekrutacja.pl
+# Allow main page indexing only
+
+User-agent: *
+Allow: /
+Disallow: /ankieta
+Disallow: /api/
+Disallow: /privacy
+Disallow: /terms
+
+# Sitemap location
+Sitemap: https://ce-rekrutacja.pl/sitemap.xml

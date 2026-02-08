@@ -47,7 +47,7 @@ const roadmapSteps = [
       <h2 class="text-3xl font-heading font-extrabold text-base-content sm:text-4xl md:text-5xl tracking-tight">
         Jak Do Nas <span class="text-primary">Dołączyć?</span>
       </h2>
-      <p class="mt-4 text-lg font-sans text-base-content/60 leading-relaxed">
+      <p class="mt-4 text-lg font-sans text-base-content/85 leading-relaxed">
         Proces rekrutacji i odpowiedzi na najczęściej zadawane pytania
       </p>
     </div>
@@ -61,7 +61,7 @@ const roadmapSteps = [
           <h3 class="text-2xl font-heading font-bold text-base-content uppercase tracking-tight mb-2">
             Tylko 4 Kroki
           </h3>
-          <p class="text-base-content/60 text-sm">
+          <p class="text-base-content/85 text-sm">
             Od ankiety do otrzymania kluczy — minimum czasu
           </p>
         </div>
@@ -71,22 +71,22 @@ const roadmapSteps = [
             <div class={`group relative bg-base-100 rounded-2xl p-6 border transition-all duration-300 shadow-sm hover:shadow-md ${step.active ? 'border-primary/30 hover:border-primary/50' : 'border-base-content/10 hover:border-base-content/20'}`}>
               <div class="flex items-start gap-5">
                 <!-- Number Badge -->
-                <div class={`shrink-0 w-12 h-12 rounded-xl flex items-center justify-center font-heading font-black text-lg transition-all duration-300 ${step.active ? 'bg-primary text-primary-content' : 'bg-base-200 text-base-content/50 group-hover:bg-primary group-hover:text-primary-content'}`}>
+                <div class={`shrink-0 w-12 h-12 rounded-xl flex items-center justify-center font-heading font-black text-lg transition-all duration-300 ${step.active ? 'bg-primary text-primary-content' : 'bg-base-200 text-base-content/70 group-hover:bg-primary group-hover:text-primary-content'}`}>
                   {step.number}
                 </div>
                 
                 <!-- Content -->
                 <div class="flex-1">
-                  <h4 class={`text-xl font-heading font-bold mb-2 uppercase tracking-tight transition-colors ${step.active ? 'text-base-content' : 'text-base-content/50 group-hover:text-base-content/70'}`}>
+                  <h4 class={`text-xl font-heading font-bold mb-2 uppercase tracking-tight transition-colors ${step.active ? 'text-base-content' : 'text-base-content/70 group-hover:text-base-content/85'}`}>
                     {step.title}
                   </h4>
-                  <p class={`text-sm leading-relaxed transition-colors ${step.active ? 'text-base-content/70' : 'text-base-content/50 group-hover:text-base-content/60'}`}>
+                  <p class={`text-sm leading-relaxed transition-colors ${step.active ? 'text-base-content/90' : 'text-base-content/70 group-hover:text-base-content/80'}`}>
                     {step.description}
                   </p>
                 </div>
 
                 <!-- Icon -->
-                <div class={`shrink-0 transition-colors ${step.active ? 'text-primary' : 'text-base-content/30 group-hover:text-base-content/50'}`} set:html={step.icon} />
+                <div class={`shrink-0 transition-colors ${step.active ? 'text-primary' : 'text-base-content/50 group-hover:text-base-content/70'}`} set:html={step.icon} />
               </div>
             </div>
           ))}
@@ -109,7 +109,7 @@ const roadmapSteps = [
           <h3 class="text-2xl font-heading font-bold text-base-content uppercase tracking-tight mb-2">
             Najczęstsze Pytania
           </h3>
-          <p class="text-base-content/60 text-sm">
+          <p class="text-base-content/85 text-sm">
             Odpowiedzi na pytania, które zadają nasi kandydaci
           </p>
         </div>
@@ -120,12 +120,12 @@ const roadmapSteps = [
             
             return (
               <div class="collapse collapse-plus bg-base-100 border border-base-content/10 hover:border-base-content/20 rounded-xl transition-all duration-300 shadow-sm hover:shadow-md">
-                <input type="radio" name="faq-accordion" id={`faq-${faq.id}`} checked={index === 0} />
+                <input type="radio" name="faq-accordion" id={`faq-${faq.id}`} checked={index === 0} aria-label={faq.data.question} />
                 <div class="collapse-title text-base font-heading font-bold text-base-content pr-10">
                   {faq.data.question}
                 </div>
                 <div class="collapse-content">
-                  <div class="text-base-content/70 text-sm leading-relaxed font-sans pt-2">
+                  <div class="text-base-content text-sm leading-relaxed font-sans pt-2">
                     <Content />
                   </div>
                 </div>
